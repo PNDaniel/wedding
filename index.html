@@ -1,0 +1,57 @@
+!DOCTYPE html
+html lang=en
+head
+  meta charset=UTF-8
+  meta name=viewport content=width=device-width, initial-scale=1.0
+  titleOur Wedding RSVPtitle
+  script src=httpscdn.tailwindcss.comscript
+  script src=httpsunpkg.comvue@3distvue.global.jsscript
+head
+body class=bg-stone-100 text-stone-800 font-serif
+
+  div id=app class=max-w-md mx-auto py-20 px-6 text-center
+    h1 class=text-4xl mb-4Sarah & Markh1
+    p class=mb-8 italic text-stone-500June 20, 2026 • Oporto, Portugalp
+
+    form @submit.prevent=submitRSVP class=bg-white p-8 rounded-lg shadow-sm
+      div class=mb-4 text-left
+        label class=block text-sm font-bold mb-1Guest Namelabel
+        input v-model=form.name type=text required class=w-full border p-2 rounded
+      div
+
+      div class=mb-6 text-left
+        label class=block text-sm font-bold mb-1Attendinglabel
+        select v-model=form.attending class=w-full border p-2 rounded
+          option value=trueJoyfully Acceptoption
+          option value=falseRegretfully Declineoption
+        select
+      div
+
+      button type=submit class=w-full bg-stone-800 text-white py-2 rounded hoverbg-stone-700 transition
+        Submit RSVP
+      button
+      
+      p v-if=submitted class=mt-4 text-green-600 font-boldThanks! We've received your RSVP.p
+    form
+  div
+
+  script
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {
+        const form = ref({ name '', attending true });
+        const submitted = ref(false);
+
+        const submitRSVP = () = {
+          console.log(Sending data, form.value);
+           Here you would fetch() to your backendform service
+          submitted.value = true;
+        };
+
+        return { form, submitted, submitRSVP };
+      }
+    }).mount('#app');
+  script
+body
+html
