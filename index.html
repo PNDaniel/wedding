@@ -1,57 +1,97 @@
-!DOCTYPE html
-html lang=en
-head
-  meta charset=UTF-8
-  meta name=viewport content=width=device-width, initial-scale=1.0
-  titleOur Wedding RSVPtitle
-  script src=httpscdn.tailwindcss.comscript
-  script src=httpsunpkg.comvue@3distvue.global.jsscript
-head
-body class=bg-stone-100 text-stone-800 font-serif
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding RSVP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        /* Ensures the scroll padding accounts for the sticky header height */
+        section { scroll-margin-top: 70px; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-900">
 
-  div id=app class=max-w-md mx-auto py-20 px-6 text-center
-    h1 class=text-4xl mb-4Sarah & Markh1
-    p class=mb-8 italic text-stone-500June 20, 2026 • Oporto, Portugalp
+<div id="app">
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex gap-4 overflow-x-auto text-sm font-medium">
+            <a href="#hero">{{ t.nav.home }}</a>
+            <a href="#lineup">{{ t.nav.lineup }}</a>
+            <a href="#rsvp">{{ t.nav.rsvp }}</a>
+            <a href="#gifts">{{ t.nav.gifts }}</a>
+            <a href="#location">{{ t.nav.location }}</a>
+        </div>
+        
+        <button @click="toggleLang" class="border px-3 py-1 rounded-full text-xs font-bold bg-stone-800 text-white">
+            {{ lang === 'en' ? 'PT' : 'EN' }}
+        </button>
+    </nav>
 
-    form @submit.prevent=submitRSVP class=bg-white p-8 rounded-lg shadow-sm
-      div class=mb-4 text-left
-        label class=block text-sm font-bold mb-1Guest Namelabel
-        input v-model=form.name type=text required class=w-full border p-2 rounded
-      div
+    <section id="hero" class="h-screen flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080')">
+        <div class="bg-white/70 p-10 text-center rounded">
+            <h1 class="text-5xl font-serif mb-2">{{ t.hero.title }}</h1>
+            <p class="text-xl italic">{{ t.hero.subtitle }}</p>
+        </div>
+    </section>
 
-      div class=mb-6 text-left
-        label class=block text-sm font-bold mb-1Attendinglabel
-        select v-model=form.attending class=w-full border p-2 rounded
-          option value=trueJoyfully Acceptoption
-          option value=falseRegretfully Declineoption
-        select
-      div
+    <section id="lineup" class="py-20 px-6 max-w-4xl mx-auto">
+        <h2 class="text-3xl text-center mb-12 font-serif">{{ t.nav.lineup }}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div v-for="n in 6" :key="n" class="border-l-2 border-stone-300 pl-4 py-4">
+                <span class="text-stone-400 text-sm italic">Stage 0{{n}}</span>
+                <h3 class="text-xl font-bold">Event Name</h3>
+                <p>Detailed info about this stage of the wedding.</p>
+            </div>
+        </div>
+    </section>
 
-      button type=submit class=w-full bg-stone-800 text-white py-2 rounded hoverbg-stone-700 transition
-        Submit RSVP
-      button
-      
-      p v-if=submitted class=mt-4 text-green-600 font-boldThanks! We've received your RSVP.p
-    form
-  div
+    <section id="rsvp" class="py-20 bg-stone-200 px-6">
+        <div class="max-w-md mx-auto bg-white p-8 rounded shadow">
+            <h2 class="text-2xl mb-6 font-serif text-center">{{ t.nav.rsvp }}</h2>
+            <p class="text-center italic text-stone-500">Form Placeholder</p>
+        </div>
+    </section>
 
-  script
-    const { createApp, ref } = Vue;
+    <section id="gifts" class="py-20 px-6 text-center max-w-2xl mx-auto">
+        <h2 class="text-3xl mb-6 font-serif">{{ t.nav.gifts }}</h2>
+        <p>{{ t.gifts.description }}</p>
+    </section>
+
+    <section id="location" class="h-96 bg-stone-300 flex items-center justify-center">
+        <span class="text-xl font-serif">{{ t.nav.location }} (Google Maps Embed)</span>
+    </section>
+</div>
+
+<script>
+    const { createApp, ref, computed } = Vue;
 
     createApp({
-      setup() {
-        const form = ref({ name '', attending true });
-        const submitted = ref(false);
+        setup() {
+            const lang = ref('en');
 
-        const submitRSVP = () = {
-          console.log(Sending data, form.value);
-           Here you would fetch() to your backendform service
-          submitted.value = true;
-        };
+            const content = {
+                en: {
+                    nav: { home: 'Home', lineup: 'Lineup', rsvp: 'RSVP', gifts: 'Gifts', location: 'Location' },
+                    hero: { title: 'Sarah & Mark', subtitle: 'We are getting married!' },
+                    gifts: { description: 'Your presence is the greatest gift, but if you wish to contribute...' }
+                },
+                pt: {
+                    nav: { home: 'Início', lineup: 'Agenda', rsvp: 'Confirmar', gifts: 'Presentes', location: 'Localização' },
+                    hero: { title: 'Sarah e Mark', subtitle: 'Vamos casar!' },
+                    gifts: { description: 'A sua presença é o melhor presente, mas se desejar contribuir...' }
+                }
+            };
 
-        return { form, submitted, submitRSVP };
-      }
+            const t = computed(() => content[lang.value]);
+
+            const toggleLang = () => {
+                lang.value = lang.value === 'en' ? 'pt' : 'en';
+            };
+
+            return { lang, t, toggleLang };
+        }
     }).mount('#app');
-  script
-body
-html
+</script>
+</body>
+</html>
