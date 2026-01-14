@@ -3,95 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding RSVP</title>
+    <title>Sarah & Mark | Wedding</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+      tailwind.config = {
+        darkMode: 'media', 
+        theme: {
+          extend: {
+            colors: {
+              'wedding-navy': '#02315E',
+              'wedding-blue-deep': '#00457E',
+              'wedding-blue-mid': '#2F70AF',
+              'wedding-rose': '#B9848C',
+              'wedding-purple': '#806491',
+            },
+            fontFamily: {
+              'serif': ['"Playfair Display"', 'serif'],
+              'sans': ['Inter', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+
     <style>
-        /* Ensures the scroll padding accounts for the sticky header height */
-        section { scroll-margin-top: 70px; }
+        section { scroll-margin-top: 80px; }
+        .hero-overlay { background: linear-gradient(to bottom, rgba(2, 49, 94, 0.4), rgba(2, 49, 94, 0.7)); }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-900">
 
-<div id="app">
-    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex gap-4 overflow-x-auto text-sm font-medium">
-            <a href="#hero">{{ t.nav.home }}</a>
-            <a href="#lineup">{{ t.nav.lineup }}</a>
-            <a href="#rsvp">{{ t.nav.rsvp }}</a>
-            <a href="#gifts">{{ t.nav.gifts }}</a>
-            <a href="#location">{{ t.nav.location }}</a>
-        </div>
-        
-        <button @click="toggleLang" class="border px-3 py-1 rounded-full text-xs font-bold bg-stone-800 text-white">
-            {{ lang === 'en' ? 'PT' : 'EN' }}
-        </button>
-    </nav>
+<body class="transition-colors duration-500 bg-white text-wedding-navy dark:bg-wedding-navy dark:text-gray-100 font-sans">
 
-    <section id="hero" class="h-screen flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080')">
-        <div class="bg-white/70 p-10 text-center rounded">
-            <h1 class="text-5xl font-serif mb-2">{{ t.hero.title }}</h1>
-            <p class="text-xl italic">{{ t.hero.subtitle }}</p>
-        </div>
-    </section>
-
-    <section id="lineup" class="py-20 px-6 max-w-4xl mx-auto">
-        <h2 class="text-3xl text-center mb-12 font-serif">{{ t.nav.lineup }}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div v-for="n in 6" :key="n" class="border-l-2 border-stone-300 pl-4 py-4">
-                <span class="text-stone-400 text-sm italic">Stage 0{{n}}</span>
-                <h3 class="text-xl font-bold">Event Name</h3>
-                <p>Detailed info about this stage of the wedding.</p>
+    <div id="app">
+        <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-white/80 dark:bg-wedding-navy/90 backdrop-blur-md shadow-sm border-b border-wedding-blue-mid/10">
+            <div class="flex gap-4 md:gap-8 text-[10px] md:text-xs font-bold tracking-widest uppercase">
+                <a href="#hero" class="hover:text-wedding-rose transition-colors">{{ t.nav.home }}</a>
+                <a href="#lineup" class="hover:text-wedding-rose transition-colors">{{ t.nav.lineup }}</a>
+                <a href="#rsvp" class="hover:text-wedding-rose transition-colors">{{ t.nav.rsvp }}</a>
+                <a href="#gifts" class="hover:text-wedding-rose transition-colors">{{ t.nav.gifts }}</a>
+                <a href="#location" class="hover:text-wedding-rose transition-colors">{{ t.nav.location }}</a>
             </div>
-        </div>
-    </section>
+            
+            <button @click="toggleLang" 
+                    class="px-3 py-1 rounded-full text-[10px] font-black border-2 border-wedding-navy dark:border-wedding-rose text-wedding-navy dark:text-wedding-rose hover:bg-wedding-navy hover:text-white dark:hover:bg-wedding-rose dark:hover:text-wedding-navy transition-all">
+                {{ lang === 'en' ? 'PT' : 'EN' }}
+            </button>
+        </nav>
 
-    <section id="rsvp" class="py-20 bg-stone-200 px-6">
-        <div class="max-w-md mx-auto bg-white p-8 rounded shadow">
-            <h2 class="text-2xl mb-6 font-serif text-center">{{ t.nav.rsvp }}</h2>
-            <p class="text-center italic text-stone-500">Form Placeholder</p>
-        </div>
-    </section>
+        <section id="hero" class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1920" class="w-full h-full object-cover" alt="Wedding">
+                <div class="absolute inset-0 hero-overlay"></div>
+            </div>
+            <div class="relative z-10 text-white px-4">
+                <h1 class="text-6xl md:text-8xl font-serif mb-4 italic">{{ t.hero.title }}</h1>
+                <p class="text-xl md:text-2xl tracking-[0.3em] uppercase opacity-90">{{ t.hero.subtitle }}</p>
+                <div class="mt-12 animate-bounce opacity-50">
+                    <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+            </div>
+        </section>
 
-    <section id="gifts" class="py-20 px-6 text-center max-w-2xl mx-auto">
-        <h2 class="text-3xl mb-6 font-serif">{{ t.nav.gifts }}</h2>
-        <p>{{ t.gifts.description }}</p>
-    </section>
+        <section id="lineup" class="py-24 px-6 max-w-5xl mx-auto">
+            <h2 class="text-4xl text-center mb-16 font-serif text-wedding-navy dark:text-wedding-rose">
+                {{ t.nav.lineup }}
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div v-for="(item, index) in t.lineup" :key="index" 
+                     class="flex items-center gap-6 p-6 rounded-2xl bg-gray-50 dark:bg-wedding-blue-deep/20 border border-wedding-blue-mid/10 dark:border-wedding-purple/30 shadow-sm hover:shadow-md transition-shadow">
+                    
+                    <div class="flex flex-col items-center min-w-[70px]">
+                        <span class="text-3xl mb-1">{{ item.icon }}</span>
+                        <span class="text-xs font-bold text-wedding-blue-mid dark:text-wedding-rose tracking-tighter">
+                            {{ item.time }}
+                        </span>
+                    </div>
 
-    <section id="location" class="h-96 bg-stone-300 flex items-center justify-center">
-        <span class="text-xl font-serif">{{ t.nav.location }} (Google Maps Embed)</span>
-    </section>
-</div>
+                    <div class="h-10 w-px bg-wedding-blue-mid/20 dark:bg-wedding-purple/40"></div>
 
-<script>
-    const { createApp, ref, computed } = Vue;
+                    <div>
+                        <h3 class="text-xl font-bold font-serif">{{ item.title }}</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic">{{ item.desc }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    createApp({
-        setup() {
-            const lang = ref('en');
+        <section id="rsvp" class="py-24 bg-wedding-blue-mid/5 dark:bg-wedding-blue-deep/10 px-6">
+            <div class="max-w-xl mx-auto text-center">
+                <h2 class="text-4xl mb-8 font-serif">{{ t.nav.rsvp }}</h2>
+                <div class="bg-white dark:bg-wedding-navy p-8 rounded-3xl shadow-xl border border-wedding-blue-mid/10">
+                    <p class="italic text-gray-400">RSVP Form logic coming in Step 5...</p>
+                </div>
+            </div>
+        </section>
 
-            const content = {
-                en: {
-                    nav: { home: 'Home', lineup: 'Lineup', rsvp: 'RSVP', gifts: 'Gifts', location: 'Location' },
-                    hero: { title: 'Sarah & Mark', subtitle: 'We are getting married!' },
-                    gifts: { description: 'Your presence is the greatest gift, but if you wish to contribute...' }
-                },
-                pt: {
-                    nav: { home: 'Início', lineup: 'Agenda', rsvp: 'Confirmar', gifts: 'Presentes', location: 'Localização' },
-                    hero: { title: 'Sarah e Mark', subtitle: 'Vamos casar!' },
-                    gifts: { description: 'A sua presença é o melhor presente, mas se desejar contribuir...' }
-                }
-            };
+        <section id="gifts" class="py-24 px-6 text-center max-w-2xl mx-auto">
+            <h2 class="text-4xl mb-8 font-serif">{{ t.nav.gifts }}</h2>
+            <p class="text-lg leading-relaxed italic text-gray-600 dark:text-gray-300">
+                {{ t.gifts.description }}
+            </p>
+        </section>
 
-            const t = computed(() => content[lang.value]);
+        <section id="location" class="py-24 px-6 text-center">
+            <h2 class="text-4xl mb-8 font-serif">{{ t.nav.location }}</h2>
+            <div class="h-96 w-full max-w-4xl mx-auto rounded-3xl bg-gray-200 dark:bg-wedding-blue-deep/30 flex items-center justify-center border-2 border-dashed border-wedding-blue-mid/20">
+                <p class="font-serif italic text-gray-400">Google Maps Embed Placeholder</p>
+            </div>
+        </section>
 
-            const toggleLang = () => {
-                lang.value = lang.value === 'en' ? 'pt' : 'en';
-            };
+        <footer class="py-12 text-center text-[10px] tracking-widest uppercase opacity-50">
+            &copy; 2026 Sarah & Mark • Made with Vue & Tailwind
+        </footer>
+    </div>
 
-            return { lang, t, toggleLang };
-        }
-    }).mount('#app');
-</script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const { createApp, ref, computed } = Vue;
+
+        createApp({
+            setup() {
+                const lang = ref('en');
+
+                const content = {
+                    en: {
+                        nav: { home: 'Home', lineup: 'Lineup', rsvp: 'RSVP', gifts: 'Gifts', location: 'Location' },
+                        hero: { title: 'Sarah & Mark', subtitle: 'Are getting married' },
+                        lineup: [
+                            { time: '15:30', icon: '💍', title: 'Ceremony', desc: 'Main Church' },
+                            { time: '17:00', icon: '🍸', title: 'Cocktails', desc: 'Garden Lounge' },
+                            { time: '19:30', icon: '🍽️', title: 'Dinner', desc: 'Dining Hall' },
+                            { time: '21:30', icon: '🎂', title: 'Cake', desc: 'Poolside' },
+                            { time: '22:00', icon: '💃', title: 'Party', desc: 'Dancefloor' },
+                            { time: '01:00', icon: '🍕', title: 'Supper', desc: 'Late Snack' }
+                        ],
+                        gifts: { description: 'The pleasure of your company is all we wish for. However, if you would like to honor us with a gift, a contribution towards our future together would be sincerely appreciated.' }
+                    },
+                    pt: {
+                        nav: { home: 'Início', lineup: 'Agenda', rsvp: 'Confirmar', gifts: 'Presentes', location: 'Localização' },
+                        hero: { title: 'Sarah e Mark', subtitle: 'Vão casar' },
+                        lineup: [
+                            { time: '15:30', icon: '💍', title: 'Cerimónia', desc: 'Igreja Principal' },
+                            { time: '17:00', icon: '🍸', title: 'Cocktail', desc: 'Jardim' },
+                            { time: '19:30', icon: '🍽️', title: 'Jantar', desc: 'Salão de Jantar' },
+                            { time: '21:30', icon: '🎂', title: 'Bolo', desc: 'Piscina' },
+                            { time: '22:00', icon: '💃', title: 'Festa', desc: 'Pista de dança' },
+                            { time: '01:00', icon: '🍕', title: 'Ceia', desc: 'Snack da meia-noite' }
+                        ],
+                        gifts: { description: 'A vossa presença é o melhor presente que poderíamos receber. No entanto, se desejarem presentear-nos, uma contribuição para o nosso futuro em conjunto será muito apreciada.' }
+                    }
+                };
+
+                const t = computed(() => content[lang.value]);
+
+                const toggleLang = () => {
+                    lang.value = lang.value === 'en' ? 'pt' : 'en';
+                };
+
+                return { lang, t, toggleLang };
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
