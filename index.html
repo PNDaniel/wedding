@@ -3,27 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wedding</title>
-    <!-- Este href cria o & estranho entre o Carolina e Daniel-->
+    <title>Carolina & Daniel | Wedding</title>
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
       rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: "media",
         theme: {
           extend: {
             colors: {
-              // Your Custom Palette
-              "wedding-navy": "#02315E",
-              "wedding-blue-deep": "#00457E",
-              "wedding-blue-mid": "#2F70AF",
-              "wedding-rose": "#B9848C",
-              "wedding-purple": "#806491",
+              "wedding-navy": "#02315E" /* Deep Royal Navy */,
+              "wedding-blue-mid": "#2F70AF" /* Classic Blue */,
+              "wedding-rose": "#B9848C" /* Dusty Rose */,
+              "wedding-champagne": "#F3E9DC" /* Warm Paper */,
+              "wedding-gold": "#C5A059" /* Accent Gold */,
             },
             fontFamily: {
-              // Mapping your fonts
               serif: ['"Playfair Display"', "serif"],
               sans: ["Inter", "sans-serif"],
             },
@@ -33,106 +30,130 @@
     </script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
-      html {
-        scroll-behavior: smooth;
+      [v-cloak] {
+        display: none;
       }
       section {
-        scroll-margin-top: 80px;
+        scroll-margin-top: 64px;
       }
       body {
-        padding-top: 64px; /* Matches the h-16 (64px) height of the nav */
+        padding-top: 64px;
+        background-color: #fcfafa;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
     </style>
   </head>
-  <body class="bg-stone-50 text-stone-900">
-    <div id="app">
+  <body class="text-slate-800">
+    <div id="app" v-cloak>
       <nav
-        class="fixed top-0 left-0 right-0 z-50 h-16 bg-white/90 backdrop-blur-md border-b flex items-center justify-between px-4 md:px-12">
+        class="fixed top-0 left-0 right-0 z-50 h-16 bg-white/80 backdrop-blur-lg border-b border-wedding-champagne flex items-center justify-between px-4 md:px-12">
         <div
-          class="flex gap-3 md:gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest overflow-x-auto whitespace-nowrap mr-2">
-          <a href="#hero">{{ t.nav.home }}</a>
-          <a href="#lineup">{{ t.nav.lineup }}</a>
-          <a href="#rsvp">{{ t.nav.rsvp }}</a>
-          <a href="#gifts">{{ t.nav.gifts }}</a>
-          <a href="#location">{{ t.nav.location }}</a>
+          class="flex gap-4 md:gap-8 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] overflow-x-auto no-scrollbar whitespace-nowrap text-wedding-navy/70">
+          <a href="#hero" class="hover:text-wedding-rose transition-colors"
+            >{{ t.nav.home }}</a
+          >
+          <a href="#lineup" class="hover:text-wedding-rose transition-colors"
+            >{{ t.nav.lineup }}</a
+          >
+          <a href="#rsvp" class="hover:text-wedding-rose transition-colors"
+            >{{ t.nav.rsvp }}</a
+          >
+          <a href="#gifts" class="hover:text-wedding-rose transition-colors"
+            >{{ t.nav.gifts }}</a
+          >
+          <a href="#location" class="hover:text-wedding-rose transition-colors"
+            >{{ t.nav.location }}</a
+          >
         </div>
 
-        <div class="flex-shrink-0 ml-4"></div>
-
-        <div class="flex items-center gap-2">
+        <div
+          class="flex items-center gap-2 ml-4 flex-shrink-0 bg-wedding-champagne/50 p-1 rounded-full px-2 border border-wedding-navy/5">
           <span
-            class="text-[10px] font-bold text-wedding-navy dark:text-wedding-rose"
-            >PT
-          </span>
-
+            class="text-[9px] font-black tracking-tighter"
+            :class="lang === 'pt' ? 'text-wedding-navy' : 'text-slate-400'"
+            >PT</span
+          >
           <button
             @click="toggleLang"
-            class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none bg-wedding-navy dark:bg-wedding-purple">
+            class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors bg-wedding-navy">
             <span
-              :class="lang === 'en' ? 'translate-x-6' : 'translate-x-1'"
-              class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-200 ease-in-out">
-            </span>
+              :class="lang === 'en' ? 'translate-x-5' : 'translate-x-1'"
+              class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform duration-300"></span>
           </button>
-
           <span
-            class="text-[10px] font-bold text-wedding-navy dark:text-wedding-rose"
-            >EN
-          </span>
+            class="text-[9px] font-black tracking-tighter"
+            :class="lang === 'en' ? 'text-wedding-navy' : 'text-slate-400'"
+            >EN</span
+          >
         </div>
       </nav>
 
       <section
         id="hero"
-        class="h-screen flex flex-col items-center justify-center bg-cover bg-center"
-        style="background-image: url('https://via.placeholder.com/1920x1080')">
-        <div class="bg-white/70 p-10 text-center rounded">
-          <h1 class="text-5xl font-serif mb-2">{{ t.hero.title }}</h1>
-          <p class="text-xl italic">{{ t.hero.subtitle }}</p>
+        class="relative h-[90vh] flex items-center justify-center overflow-hidden bg-wedding-navy">
+        <div class="absolute inset-0 z-0 opacity-60">
+          <img
+            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80"
+            class="w-full h-full object-cover scale-105"
+            alt="Wedding Background" />
         </div>
-        <div class="absolute bottom-10 animate-bounce">
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-          </svg>
+
+        <div
+          class="relative z-10 bg-white/10 backdrop-blur-sm border border-white/20 p-8 md:p-16 text-center rounded-2xl shadow-2xl mx-4">
+          <h1
+            class="text-5xl md:text-8xl font-serif mb-4 text-white drop-shadow-lg">
+            {{ t.hero.title }}
+          </h1>
+          <div class="h-px w-20 bg-wedding-rose mx-auto mb-6"></div>
+          <p
+            class="text-lg md:text-2xl text-white/90 font-light tracking-widest uppercase italic">
+            {{ t.hero.subtitle }}
+          </p>
         </div>
       </section>
 
-      <section id="lineup" class="py-20 px-6 max-w-5xl mx-auto">
+      <section id="lineup" class="py-24 px-6 max-w-6xl mx-auto">
         <h2
-          class="text-4xl text-center mb-16 font-serif text-wedding-navy dark:text-wedding-rose">
+          class="text-4xl md:text-5xl text-center mb-20 font-serif text-wedding-navy italic">
           {{ t.nav.lineup }}
         </h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div
             v-for="(item, index) in t.lineup"
             :key="index"
             :class="index === 6 ? 'md:col-span-2 md:mx-auto md:w-1/2' : ''"
-            class="flex items-center gap-6 p-6 rounded-2xl bg-gray-50 dark:bg-wedding-blue-deep/10 border border-wedding-blue-mid/10 transition-all hover:shadow-md">
+            class="group flex items-center gap-6 p-6 rounded-3xl bg-white border border-wedding-champagne shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
             <div
-              class="w-28 h-28 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
+              class="w-24 h-24 rounded-2xl bg-wedding-champagne/30 flex items-center justify-center flex-shrink-0 overflow-hidden border border-wedding-champagne">
               <img
                 v-if="item.icon"
                 :src="item.icon"
-                class="w-full h-full object-contain scale-110"
-                :alt="item.title" />
+                class="w-full h-full object-contain scale-110 group-hover:scale-125 transition-transform duration-500" />
+              <span
+                v-else
+                class="text-4xl group-hover:rotate-12 transition-transform"
+                >{{ item.emoji }}</span
+              >
             </div>
 
             <div class="flex flex-col">
               <span
-                class="text-xs font-bold text-wedding-blue-mid dark:text-wedding-rose tracking-tighter uppercase font-sans">
-                {{ item.time }}
-              </span>
-              <h3
-                class="text-xl font-bold font-serif text-wedding-navy dark:text-white">
+                class="text-xs font-black text-wedding-rose tracking-[0.2em] uppercase mb-1"
+                >{{ item.time }}</span
+              >
+              <h3 class="text-2xl font-serif text-wedding-navy">
                 {{ item.title }}
               </h3>
               <p
                 v-if="item.extra"
-                class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">
+                class="text-sm text-slate-500 italic mt-1 font-light leading-relaxed">
                 {{ item.extra }}
               </p>
             </div>
@@ -140,34 +161,62 @@
         </div>
       </section>
 
-      <section id="rsvp" class="py-20 bg-stone-200 px-6">
-        <div class="max-w-md mx-auto bg-white p-8 rounded shadow">
-          <h2 class="text-2xl mb-6 font-serif text-center">{{ t.nav.rsvp }}</h2>
-          <p class="text-center italic text-stone-500">Form Placeholder</p>
+      <section
+        id="rsvp"
+        class="py-24 bg-wedding-champagne/40 border-y border-wedding-champagne px-6 text-center">
+        <div
+          class="max-w-xl mx-auto bg-white p-12 rounded-[2rem] shadow-xl border border-white">
+          <h2 class="text-4xl mb-6 font-serif text-wedding-navy italic">
+            {{ t.nav.rsvp }}
+          </h2>
+          <p class="text-slate-600 mb-8 font-light">
+            Join us in celebrating this special day. Please confirm your
+            attendance below.
+          </p>
+          <button
+            class="bg-wedding-navy text-white px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-wedding-rose transition-colors shadow-lg">
+            Confirm Attendance
+          </button>
         </div>
       </section>
 
-      <section id="gifts" class="py-20 px-6 text-center max-w-2xl mx-auto">
-        <h2 class="text-3xl mb-6 font-serif">{{ t.nav.gifts }}</h2>
-        <p>{{ t.gifts.description }}</p>
+      <section id="gifts" class="py-24 px-6 text-center max-w-3xl mx-auto">
+        <div class="text-wedding-gold mb-6 text-4xl">✨</div>
+        <h2 class="text-4xl mb-6 font-serif text-wedding-navy italic">
+          {{ t.nav.gifts }}
+        </h2>
+        <p class="text-lg leading-relaxed text-slate-600 font-light">
+          {{ t.gifts.description }}
+        </p>
       </section>
 
       <section
         id="location"
-        class="h-96 bg-stone-300 flex items-center justify-center">
-        <span class="text-xl font-serif"
-          >{{ t.nav.location }} (Google Maps Embed)</span
-        >
+        class="relative h-[500px] bg-slate-200 overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div
+            class="bg-white/90 backdrop-blur px-8 py-4 rounded-full shadow-2xl z-10 border border-wedding-champagne">
+            <span
+              class="text-wedding-navy font-bold tracking-widest uppercase text-sm italic"
+              >{{ t.nav.location }}</span
+            >
+          </div>
+          <div
+            class="w-full h-full bg-[url('https://via.placeholder.com/1920x600?text=Map+Placeholder')] bg-cover"></div>
+        </div>
       </section>
+
+      <footer
+        class="py-12 text-center text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
+        C & D • 2026
+      </footer>
     </div>
 
     <script>
       const { createApp, ref, computed } = Vue;
-
       createApp({
         setup() {
           const lang = ref("pt");
-
           const content = {
             en: {
               nav: {
@@ -183,7 +232,7 @@
               },
               gifts: {
                 description:
-                  "Your presence is the greatest gift, but if you wish to contribute...",
+                  "Your presence is the greatest gift, but if you wish to contribute to our future together, a contribution would be greatly appreciated.",
               },
               lineup: [
                 {
@@ -197,36 +246,36 @@
                   time: "16:30",
                   emoji: "🍸",
                   icon: "images/stage2.jpeg",
-                  title: "Cocktails",
-                  extra: "Garden",
+                  title: "Cocktail Hour",
+                  extra: "Garden Reception",
                 },
                 {
                   time: "18:30",
                   emoji: "🍽️",
                   icon: "images/stage3.jpeg",
                   title: "Dinner",
-                  extra: "",
+                  extra: "Main Hall",
                 },
                 {
                   time: "21:00",
                   emoji: "🎂",
                   icon: "images/stage4.jpeg",
-                  title: "Cake Cutting",
+                  title: "The Cake",
                   extra: "Poolside",
                 },
                 {
                   time: "21:30",
                   emoji: "💃",
                   icon: "images/stage5.jpeg",
-                  title: "Party",
+                  title: "First Dance",
                   extra: "Grand Ballroom",
                 },
                 {
                   time: "00:00",
                   emoji: "🍕",
                   icon: "images/stage6.jpeg",
-                  title: "Supper",
-                  extra: "",
+                  title: "Late Supper",
+                  extra: "Party Zone",
                 },
                 {
                   time: "02:00",
@@ -240,7 +289,7 @@
             pt: {
               nav: {
                 home: "Início",
-                lineup: "Alinhamento",
+                lineup: "Agenda",
                 rsvp: "Confirmar",
                 gifts: "Presentes",
                 location: "Localização",
@@ -248,7 +297,7 @@
               hero: { title: "Carolina & Daniel", subtitle: "Vamos casar!" },
               gifts: {
                 description:
-                  "A sua presença é o melhor presente, mas se desejar contribuir...",
+                  "A sua presença é o melhor presente, mas se desejar contribuir para o nosso futuro, a vossa generosidade será muito apreciada.",
               },
               lineup: [
                 {
@@ -256,60 +305,57 @@
                   emoji: "💍",
                   icon: "images/stage1.jpeg",
                   title: "Cerimónia",
-                  extra: "Main Chapel",
+                  extra: "Capela Principal",
                 },
                 {
                   time: "16:30",
                   emoji: "🍸",
                   icon: "images/stage2.jpeg",
-                  title: "Cocktails",
-                  extra: "Garden",
+                  title: "Copo de Água",
+                  extra: "Entradas no Jardim",
                 },
                 {
                   time: "18:30",
                   emoji: "🍽️",
                   icon: "images/stage3.jpeg",
                   title: "Jantar",
-                  extra: "",
-                }, // Empty extra
+                  extra: "Salão Nobre",
+                },
                 {
                   time: "21:00",
                   emoji: "🎂",
                   icon: "images/stage4.jpeg",
-                  title: "Cenas",
-                  extra: "Poolside",
+                  title: "Corte do Bolo",
+                  extra: "Piscina",
                 },
                 {
                   time: "21:30",
                   emoji: "💃",
                   icon: "images/stage5.jpeg",
-                  title: "Bolo",
-                  extra: "Grand Ballroom",
+                  title: "Abertura da Pista",
+                  extra: "Salão de Baile",
                 },
                 {
                   time: "00:00",
                   emoji: "🍕",
                   icon: "images/stage6.jpeg",
-                  title: "Festa",
-                  extra: "",
+                  title: "Ceia",
+                  extra: "Zona de Festa",
                 },
                 {
                   time: "02:00",
                   emoji: "🚗",
                   icon: "images/stage7.jpeg",
                   title: "Fim da Festa",
-                  extra: "Shuttle available",
+                  extra: "Shuttle disponível",
                 },
               ],
             },
           };
-
           const t = computed(() => content[lang.value]);
-
           const toggleLang = () => {
             lang.value = lang.value === "en" ? "pt" : "en";
           };
-
           return { lang, t, toggleLang };
         },
       }).mount("#app");
