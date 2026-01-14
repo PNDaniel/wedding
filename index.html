@@ -113,14 +113,12 @@
             :class="index === 6 ? 'md:col-span-2 md:mx-auto md:w-1/2' : ''"
             class="flex items-center gap-6 p-6 rounded-2xl bg-gray-50 dark:bg-wedding-blue-deep/10 border border-wedding-blue-mid/10 transition-all hover:shadow-md">
             <div
-              class="w-16 h-16 rounded-full bg-white dark:bg-wedding-navy flex items-center justify-center overflow-hidden shadow-inner flex-shrink-0 border border-gray-100 dark:border-wedding-purple/20">
+              class="w-28 h-28 rounded-2xl bg-white flex items-center justify-center flex-shrink-0 overflow-hidden shadow-sm">
               <img
                 v-if="item.icon"
                 :src="item.icon"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-contain scale-110"
                 :alt="item.title" />
-
-              <span v-else class="text-3xl"> {{ item.emoji }} </span>
             </div>
 
             <div class="flex flex-col">
@@ -257,7 +255,7 @@
                   time: "15:00",
                   emoji: "💍",
                   icon: "images/stage1.jpeg",
-                  title: "Ceremony",
+                  title: "Cerimónia",
                   extra: "Main Chapel",
                 },
                 {
@@ -271,35 +269,35 @@
                   time: "18:30",
                   emoji: "🍽️",
                   icon: "images/stage3.jpeg",
-                  title: "Dinner",
+                  title: "Jantar",
                   extra: "",
                 }, // Empty extra
                 {
                   time: "21:00",
                   emoji: "🎂",
                   icon: "images/stage4.jpeg",
-                  title: "Cake Cutting",
+                  title: "Cenas",
                   extra: "Poolside",
                 },
                 {
                   time: "21:30",
                   emoji: "💃",
                   icon: "images/stage5.jpeg",
-                  title: "Party",
+                  title: "Bolo",
                   extra: "Grand Ballroom",
                 },
                 {
                   time: "00:00",
                   emoji: "🍕",
                   icon: "images/stage6.jpeg",
-                  title: "Supper",
+                  title: "Festa",
                   extra: "",
                 },
                 {
                   time: "02:00",
                   emoji: "🚗",
                   icon: "images/stage7.jpeg",
-                  title: "Farewell",
+                  title: "Fim da Festa",
                   extra: "Shuttle available",
                 },
               ],
@@ -318,3 +316,19 @@
     </script>
   </body>
 </html>
+
+<!--
+Podíamos ter-nos ficado por ir ao notário e despachar as coisas, mas na verdade, 
+era importante para nós ter uma festa para celebrar este momento importante nas nossas vidas!
+
+Por isso, e com esperança que não tivessem nada melhor para fazer neste belo Domingo, 
+21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso casamento, no Arquivo Distrital do Porto, seguido da receção no Mosteiro de São Bento da Vitória! De uma maneira ou outra, são pessoas importantes para nós, e queremos partilhar este momento convosco!
+
+O dress code será formal, a tender para o "tenham noção", e se quiserem contribuir 
+para a nossa felicidade de uma maneira mais material, o nosso IBAN é o 
+PT50 0018 0003 6645 7649 0206 7, embora também aceitemos cheques-prenda da Bertrand.
+
+Gostaria de dizer que contamos convosco incondicionalmente, mas efectivamente a 
+organização necessita de saber com quantas pessoas contar, pelo que agradecemos a 
+vossa resposta até ao dia XX.
+-->
