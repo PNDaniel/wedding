@@ -65,4 +65,17 @@ export const pt = {
       extra: "O Daniel vai dormir, vocês fazem o que quiserem",
     },
   ],
+  rsvp_form: {
+    deadline: "Por favor responda até 31 de Outubro, 2026",
+    success_title: "Confirmado!",
+    success_msg: "A sua resposta foi enviada. Mal podemos esperar!",
+    name_label: "Nome Completo",
+    name_placeholder: "Ex: Carolina & Daniel",
+    presence_label: "Confirma a sua presença?",
+    presence_yes: "Sim, aceito!",
+    presence_no: "Infelizmente não",
+    dietary_label: "Restrições Alimentares",
+    dietary_placeholder: "Alergias, vegetariano, etc...",
+    submit_btn: "Enviar Resposta",
+  },
 };

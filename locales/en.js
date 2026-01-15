@@ -65,4 +65,17 @@ export const en = {
       extra: "Shuttle Service",
     },
   ],
+  rsvp_form: {
+    deadline: "Please reply by October 31st, 2026",
+    success_title: "Confirmed!",
+    success_msg: "Your response has been sent. We can't wait!",
+    name_label: "Full Name",
+    name_placeholder: "Ex: Mark & Sarah",
+    presence_label: "Will you attend?",
+    presence_yes: "Yes, I do!",
+    presence_no: "Sadly, no",
+    dietary_label: "Dietary Restrictions",
+    dietary_placeholder: "Allergies, vegetarian, etc...",
+    submit_btn: "Send Response",
+  },
 };
