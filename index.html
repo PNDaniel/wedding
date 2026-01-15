@@ -215,13 +215,9 @@
     </div>
 
     <script type="module">
-      import { content } from "./strings.js";
-      import {
-        createApp,
-        ref,
-        computed,
-      } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
-      // const { createApp, ref, computed } = Vue;
+      import { en } from "./locales/en.js";
+      import { pt } from "./locales/pt.js";
+      const { createApp, ref, computed } = Vue;
 
       createApp({
         setup() {
@@ -240,147 +236,11 @@
           };
 
           const lang = ref("pt");
-
-          /*   const content = {
-            en: {
-              nav: {
-                home: "Home",
-                lineup: "Lineup",
-                rsvp: "RSVP",
-                gifts: "Gifts",
-                location: "Location",
-              },
-              hero: {
-                title: "Carolina & Daniel",
-                subtitle: "We are getting married!",
-              },
-              gifts: {
-                description:
-                  "Your presence is the greatest gift, but if you wish to contribute...",
-              },
-              lineup: [
-                {
-                  time: "15:00",
-                  emoji: "💍",
-                  icon: "images/stage1.jpeg",
-                  title: "Ceremony",
-                  extra: "Main Chapel",
-                },
-                {
-                  time: "16:30",
-                  emoji: "🍸",
-                  icon: "images/stage2.jpeg",
-                  title: "Cocktails",
-                  extra: "Garden",
-                },
-                {
-                  time: "18:30",
-                  emoji: "🍽️",
-                  icon: "images/stage3.jpeg",
-                  title: "Dinner",
-                  extra: "",
-                },
-                {
-                  time: "21:00",
-                  emoji: "🎂",
-                  icon: "images/stage4.jpeg",
-                  title: "Stuff",
-                  extra: "Poolside",
-                },
-                {
-                  time: "21:30",
-                  emoji: "💃",
-                  icon: "images/stage5.jpeg",
-                  title: "Cake",
-                  extra: "Grand Ballroom",
-                },
-                {
-                  time: "00:00",
-                  emoji: "🍕",
-                  icon: "images/stage6.jpeg",
-                  title: "Party",
-                  extra: "",
-                },
-                {
-                  time: "02:00",
-                  emoji: "🚗",
-                  icon: "images/stage7.jpeg",
-                  title: "Farewell",
-                  extra: "Shuttle available",
-                },
-              ],
-            },
-            pt: {
-              nav: {
-                home: "Início",
-                lineup: "Alinhamento",
-                rsvp: "Confirmar",
-                gifts: "Presentes",
-                location: "Localização",
-              },
-              hero: { title: "Carolina & Daniel", subtitle: "Vamos casar!" },
-              gifts: {
-                description:
-                  "A sua presença é o melhor presente, mas se desejar contribuir...",
-              },
-              lineup: [
-                {
-                  time: "15:00",
-                  emoji: "💍",
-                  icon: "images/stage1.jpeg",
-                  title: "Cerimónia",
-                  extra: "Vai ser muito bonito",
-                },
-                {
-                  time: "16:30",
-                  emoji: "🍸",
-                  icon: "images/stage2.jpeg",
-                  title: "Copo de água",
-                  extra: "Sim, vai haver sushi",
-                },
-                {
-                  time: "18:30",
-                  emoji: "🍽️",
-                  icon: "images/stage3.jpeg",
-                  title: "Jantar",
-                  extra: "Para quem tiver espaço",
-                }, // Empty extra
-                {
-                  time: "21:00",
-                  emoji: "🎂",
-                  icon: "images/stage4.jpeg",
-                  title: "Cenas",
-                  extra: "",
-                },
-                {
-                  time: "21:30",
-                  emoji: "💃",
-                  icon: "images/stage5.jpeg",
-                  title: "Bolo",
-                  extra: "Vai ter chocolate",
-                },
-                {
-                  time: "00:00",
-                  emoji: "🍕",
-                  icon: "images/stage6.jpeg",
-                  title: "Festa",
-                  extra: "A Carolina vai dançar",
-                },
-                {
-                  time: "02:00",
-                  emoji: "🚗",
-                  icon: "images/stage7.jpeg",
-                  title: "Fim da Festa",
-                  extra: "O Daniel vai dormir, vocês fazem o que quiserem",
-                },
-              ],
-            },
-          };
-*/
+          const content = { en, pt };
           const t = computed(() => content[lang.value]);
 
           const toggleLang = () => {
-            latng.value = lang.value === "en" ? "pt" : "en";
+            lang.value = lang.value === "en" ? "pt" : "en";
           };
 
           return { lang, t, toggleLang, form, submitted, submitForm };
