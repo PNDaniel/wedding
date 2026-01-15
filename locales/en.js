@@ -70,7 +70,7 @@ export const en = {
     success_title: "Confirmed!",
     success_msg: "Your response has been sent. We can't wait!",
     name_label: "Full Name",
-    name_placeholder: "Ex: Mark & Sarah",
+    name_placeholder: "Ex: Carolina & Daniel",
     presence_label: "Will you attend?",
     presence_yes: "Yes, I do!",
     presence_no: "Sadly, no",
