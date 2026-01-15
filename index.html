@@ -16,6 +16,7 @@
           extend: {
             colors: {
               // Your Custom Palette
+              // https://colorpalettes.net/color-palette-4567/
               "wedding-navy": "#02315E",
               "wedding-blue-deep": "#00457E",
               "wedding-blue-mid": "#2F70AF",
@@ -297,10 +298,46 @@
             song: "",
           });
 
-          const submitForm = () => {
-            // In a real app, you'd use fetch() to an API here
-            console.log("Form Data:", form.value);
-            submitted.value = true;
+          // const submitForm = () => {
+          //   // https://script.google.com/macros/s/AKfycby5mgNRqwBjjpIw20T40Ua97EJNbs-gCaE1bOHjhbGSqQBmPeDUQLGmeEvAaKR7yDWG/exec
+          //   // In a real app, you'd use fetch() to an API here
+          //   console.log("Form Data:", form.value);
+          //   submitted.value = true;
+          // };
+
+          const submitForm = async () => {
+            // Show a basic loading console log
+            console.log("Connecting to Google Sheets...");
+
+            try {
+              // We use fetch with the 'no-cors' mode because Google Apps Script
+              // redirects can sometimes trigger CORS errors in simple setups.
+              await fetch(
+                "https://script.google.com/macros/s/AKfycby5mgNRqwBjjpIw20T40Ua97EJNbs-gCaE1bOHjhbGSqQBmPeDUQLGmeEvAaKR7yDWG/exec",
+                {
+                  method: "POST",
+                  mode: "no-cors", // This ensures the request goes through smoothly
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(form.value),
+                }
+              );
+
+              // Since 'no-cors' doesn't return a readable 'ok' status,
+              // we assume success if no error was thrown.
+              submitted.value = true;
+              document
+                .getElementById("rsvp")
+                .scrollIntoView({ behavior: "smooth" });
+            } catch (error) {
+              console.error("Submission error:", error);
+              alert(
+                lang.value === "pt"
+                  ? "Erro ao enviar. Tente novamente."
+                  : "Error sending. Please try again."
+              );
+            }
           };
 
           const lang = ref("pt");
@@ -320,10 +357,14 @@
 
 <!--
 Podíamos ter-nos ficado por ir ao notário e despachar as coisas, mas na verdade, 
-era importante para nós ter uma festa para celebrar este momento importante nas nossas vidas!
+era importante para nós ter uma festa para celebrar este momento importante nas 
+nossas vidas!
 
 Por isso, e com esperança que não tivessem nada melhor para fazer neste belo Domingo, 
-21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso casamento, no Arquivo Distrital do Porto, seguido da receção no Mosteiro de São Bento da Vitória! De uma maneira ou outra, são pessoas importantes para nós, e queremos partilhar este momento convosco!
+21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso 
+casamento, no Arquivo Distrital do Porto, seguido da receção no Mosteiro de São Bento 
+da Vitória! De uma maneira ou outra, são pessoas importantes para nós, e queremos 
+partilhar este momento convosco!
 
 O dress code será formal, a tender para o "tenham noção", e se quiserem contribuir 
 para a nossa felicidade de uma maneira mais material, o nosso IBAN é o 
@@ -332,7 +373,4 @@ PT50 0018 0003 6645 7649 0206 7, embora também aceitemos cheques-prenda da Bert
 Gostaria de dizer que contamos convosco incondicionalmente, mas efectivamente a 
 organização necessita de saber com quantas pessoas contar, pelo que agradecemos a 
 vossa resposta até ao dia XX.
-
-
-RSVP alergia vegetarianos Gluten
 -->
