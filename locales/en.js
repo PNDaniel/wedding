@@ -7,12 +7,24 @@ export const en = {
     location: "Location",
   },
   hero: {
+    subtitle: "WE ARE GETTING MARRIED",
     title: "Carolina & Daniel",
-    subtitle: "We are getting married!",
+    location: "Porto, Portugal",
+  },
+  countdown: {
+    days: "Days",
+    hours: "Hours",
+    mins: "Mins",
+    secs: "Secs",
   },
   gifts: {
-    description:
-      "Your presence is the most important thing to us. But if you'd like to help us begin our new life together, a contribution would be warmly received.",
+    title: "Gifts",
+    message:
+      "The most important thing to us is your presence. However, if you wish to give an extra contribution, the IBAN is the following:",
+    iban_label: "Bank Transfer (IBAN)",
+    copy_btn: "Copy IBAN",
+    copied: "Copied!",
+    bertrand_note: "Note: Bertrand gift vouchers are also welcome",
   },
   lineup: [
     {

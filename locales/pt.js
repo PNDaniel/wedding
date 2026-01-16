@@ -7,13 +7,30 @@ export const pt = {
     location: "Localização",
   },
   hero: {
+    subtitle: "VAMOS CASAR",
     title: "Carolina & Daniel",
-    subtitle: "Vamos casar!",
+    location: "Porto, Portugal",
   },
+  countdown: {
+    days: "Dias",
+    hours: "Horas",
+    mins: "Min",
+    secs: "Seg",
+  },
+  // gifts: {
+  //   description:
+  //     "Queremos é que apareçam, mas se quiserem dar uma contribuição extra, o nosso IBAN é o PT50 0018 0003 6645 7649 0206 7, mas a Carolina aceite cheques-prenda da Bertrand.",
+  // },
   gifts: {
-    description:
-      "A vossa presença é o maior presente. No entanto, se quiserem ajudar-nos a iniciar esta nova etapa, qualquer contribuição será recebida com gratidão.",
+    title: "Presentes",
+    message:
+      "Queremos é que apareçam, mas se quiserem dar uma contribuição extra, podem enviar para o seguinte IBAN:",
+    iban_label: "Transferência Bancária (IBAN)",
+    copy_btn: "Copiar IBAN",
+    copied: "Copiado!",
+    bertrand_note: "Nota: Também aceitamos cheques-prenda Bertrand",
   },
+
   lineup: [
     {
       time: "15:00",
