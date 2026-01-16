@@ -28,9 +28,9 @@ export const pt = {
     iban_label: "Transferência Bancária (IBAN)",
     copy_btn: "Copiar IBAN",
     copied: "Copiado!",
-    bertrand_note: "Nota: Também aceitamos cheques-prenda Bertrand",
+    bertrand_note:
+      "Nota: para a Carolina cheques-prenda da Bertrand também são bem-vindos.",
   },
-
   lineup: [
     {
       time: "15:00",
@@ -83,7 +83,8 @@ export const pt = {
     },
   ],
   rsvp_form: {
-    deadline: "Por favor responda até 31 de Outubro, 2026",
+    deadline:
+      "Gostariamos de dizer que contamos convosco incondicionalmente, mas a organização precisa de confirmações prévias, pedimos o façam até 31 de Outubro de 2026.",
     success_title: "Confirmado!",
     success_msg: "A sua resposta foi enviada. Mal podemos esperar!",
     name_label: "Nome Completo",
@@ -94,5 +95,19 @@ export const pt = {
     dietary_label: "Restrições Alimentares",
     dietary_placeholder: "Alergias, vegetariano, etc...",
     submit_btn: "Enviar Resposta",
+    add_guest_label: "Levo acompanhantes?",
+    add_guest_btn: "+ Adicionar",
+    guest_name_placeholder: "Também levo...",
+    is_child: "É criança?",
+    child_note: "Nota: São consideras crianças até aos 8 anos.",
+    remove_guest: "Remover",
+  },
+  location: {
+    title: "Localização",
+    venue_name: "Mosteiro de São Bento da Vitória",
+    address: "R. de São Bento da Vitória 45, 4050-542 Porto",
+    description:
+      "A cerimónia e o copo d'água terão lugar neste espaço icónico no coração do Porto.",
+    cta_maps: "Abrir no Google Maps",
   },
 };

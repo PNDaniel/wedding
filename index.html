@@ -159,7 +159,7 @@
         class="relative h-screen min-h-[700px] w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 z-0">
           <img
-            src="images/WhatsApp Image 2026-01-16 at 08.27.31.jpeg"
+            src="images/MosteiroDentro.jpeg"
             class="w-full h-full object-cover object-bottom scale-105 animate-slow-zoom"
             alt="Carolina & Daniel" />
 
@@ -338,12 +338,69 @@
                 </div>
               </div>
 
-              <div v-if="form.attending === 'yes'" class="space-y-6">
+              <div
+                v-if="form.attending === 'yes'"
+                class="space-y-8 border-t border-slate-100 pt-8">
                 <div>
                   <label
-                    class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3"
-                    >{{ t.rsvp_form.dietary_label }}</label
-                  >
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-4">
+                    {{ t.rsvp_form.add_guest_label }}
+                  </label>
+
+                  <div class="space-y-4">
+                    <div
+                      v-for="(guest, index) in form.additionalGuests"
+                      :key="index"
+                      class="bg-slate-50 p-4 rounded-2xl border border-slate-100 relative animate-fade-in">
+                      <div class="flex flex-col gap-4">
+                        <input
+                          v-model="guest.name"
+                          type="text"
+                          :placeholder="t.rsvp_form.guest_name_placeholder"
+                          class="bg-white border-b border-slate-200 px-3 py-2 outline-none focus:border-wedding-rose transition-all font-serif" />
+
+                        <div class="flex items-center justify-between">
+                          <label class="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              v-model="guest.isChild"
+                              class="accent-wedding-rose h-4 w-4" />
+                            <span
+                              class="text-xs font-bold text-wedding-navy uppercase tracking-tighter"
+                              >{{ t.rsvp_form.is_child }}</span
+                            >
+                          </label>
+
+                          <button
+                            type="button"
+                            @click="removeGuest(index)"
+                            class="text-[9px] uppercase font-black text-red-400 hover:text-red-600">
+                            {{ t.rsvp_form.remove_guest }}
+                          </button>
+                        </div>
+
+                        <p
+                          v-if="guest.isChild"
+                          class="text-[10px] italic text-wedding-blue-mid leading-tight bg-white p-2 rounded-lg">
+                          {{ t.rsvp_form.child_note }}
+                        </p>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      @click="addGuest"
+                      class="w-full py-3 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 text-[10px] font-black uppercase tracking-widest hover:border-wedding-rose hover:text-wedding-rose transition-all">
+                      {{ t.rsvp_form.add_guest_btn }}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3">
+                    {{ t.rsvp_form.dietary_label }}
+                  </label>
                   <textarea
                     v-model="form.dietary"
                     rows="2"
@@ -374,7 +431,7 @@
           </h2>
           <p
             class="text-slate-500 font-light italic leading-relaxed mb-12 px-4">
-            "{{ t.gifts.message }}"
+            {{ t.gifts.message }}
           </p>
 
           <div
@@ -445,6 +502,66 @@
           </a>
         </div>
       </section>
+      <section id="location" class="py-24 px-6 bg-slate-50">
+        <div class="max-w-4xl mx-auto">
+          <div class="flex flex-col md:flex-row items-center gap-12">
+            <div
+              class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square">
+              <img
+                src="images/MosteiroFora.jpeg"
+                alt="Casa de Vilar"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+
+              <div
+                class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm">
+                <span
+                  class="text-[10px] font-black uppercase tracking-widest text-wedding-navy"
+                  >Porto, PT</span
+                >
+              </div>
+            </div>
+
+            <div class="w-full md:w-1/2 text-center md:text-left">
+              <h2 class="text-4xl font-serif italic text-wedding-navy mb-4">
+                {{ t.location.title }}
+              </h2>
+              <h3
+                class="text-xl font-bold uppercase tracking-widest text-wedding-rose mb-6">
+                {{ t.location.venue_name }}
+              </h3>
+
+              <p class="text-slate-500 font-light leading-relaxed mb-8">
+                {{ t.location.description }}
+              </p>
+
+              <div class="mb-10">
+                <p class="text-wedding-navy font-mono text-sm mb-2">
+                  {{ t.location.address }}
+                </p>
+              </div>
+
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Casa+de+Vilar+Porto"
+                target="_blank"
+                class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose shadow-lg shadow-wedding-navy/20 active:scale-95">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                </svg>
+                {{ t.location.cta_maps }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="py-12 text-center border-t border-slate-100">
+        <p class="font-serif italic text-2xl text-wedding-navy mb-4">C & D</p>
+        <p
+          class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300">
+          21.02.2027
+        </p>
+      </footer>
     </div>
 
     <script type="module">
@@ -465,40 +582,46 @@
             name: "",
             attending: "yes",
             dietary: "",
-            song: "",
+            additionalGuests: [],
           });
+
+          const addGuest = () => {
+            form.value.additionalGuests.push({ name: "", isChild: false });
+          };
+
+          const removeGuest = (index) => {
+            form.value.additionalGuests.splice(index, 1);
+          };
 
           const submitForm = async () => {
             console.log("Connecting to Google Sheets...");
 
+            // Add a simple loading state if you like
             try {
-              // We use fetch with the 'no-cors' mode because Google Apps Script
-              // redirects can sometimes trigger CORS errors in simple setups.
               await fetch(
                 "https://script.google.com/macros/s/AKfycby5mgNRqwBjjpIw20T40Ua97EJNbs-gCaE1bOHjhbGSqQBmPeDUQLGmeEvAaKR7yDWG/exec",
                 {
                   method: "POST",
-                  mode: "no-cors", // This ensures the request goes through smoothly
+                  mode: "no-cors",
                   headers: {
-                    "Content-Type": "application/json",
+                    // Use text/plain to play nice with 'no-cors'
+                    "Content-Type": "text/plain;charset=utf-8",
                   },
                   body: JSON.stringify(form.value),
                 }
               );
 
-              // Since 'no-cors' doesn't return a readable 'ok' status,
-              // we assume success if no error was thrown.
+              // Assumption of success due to no-cors limitations
               submitted.value = true;
-              document
-                .getElementById("rsvp")
-                .scrollIntoView({ behavior: "smooth" });
+
+              // Android equivalent of scrollTo(0, rsvp.top)
+              const rsvpSection = document.getElementById("rsvp");
+              if (rsvpSection) {
+                rsvpSection.scrollIntoView({ behavior: "smooth" });
+              }
             } catch (error) {
               console.error("Submission error:", error);
-              alert(
-                lang.value === "pt"
-                  ? "Erro ao enviar. Tente novamente."
-                  : "Error sending. Please try again."
-              );
+              alert(t.value.rsvp_form.error_msg || "Error");
             }
           };
 
@@ -527,6 +650,8 @@
             t,
             toggleLang,
             form,
+            addGuest,
+            removeGuest,
             submitted,
             submitForm,
             isMenuOpen,

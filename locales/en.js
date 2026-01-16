@@ -24,7 +24,7 @@ export const en = {
     iban_label: "Bank Transfer (IBAN)",
     copy_btn: "Copy IBAN",
     copied: "Copied!",
-    bertrand_note: "Note: Bertrand gift vouchers are also welcome",
+    bertrand_note: "Note: for Carolina Bertrand gift vouchers are also welcome",
   },
   lineup: [
     {
@@ -78,7 +78,8 @@ export const en = {
     },
   ],
   rsvp_form: {
-    deadline: "Please reply by October 31st, 2026",
+    deadline:
+      "We would like to say that we count on you unconditionally, but the organization needs prior confirmations, so we ask that you do so by October 31st, 2026.",
     success_title: "Confirmed!",
     success_msg: "Your response has been sent. We can't wait!",
     name_label: "Full Name",
@@ -89,5 +90,19 @@ export const en = {
     dietary_label: "Dietary Restrictions",
     dietary_placeholder: "Allergies, vegetarian, etc...",
     submit_btn: "Send Response",
+    add_guest_label: "Bringing guests?",
+    add_guest_btn: "+ Add",
+    guest_name_placeholder: "I'm also bringing...",
+    is_child: "Child?",
+    child_note: "Note: Children under 3 do not require a formal seat.",
+    remove_guest: "Remove",
+  },
+  location: {
+    title: "Location",
+    venue_name: "Mosteiro de São Bento da Vitória",
+    address: "R. de São Bento da Vitória 45, 4050-542 Porto",
+    description:
+      "Both the ceremony and the reception will take place at this iconic venue in the heart of Porto.",
+    cta_maps: "Open in Google Maps",
   },
 };
