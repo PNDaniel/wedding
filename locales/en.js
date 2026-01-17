@@ -12,20 +12,11 @@ export const en = {
     title: "Carolina & Daniel",
     location: "Porto, Portugal",
   },
-  countdown: {
-    days: "Days",
-    hours: "Hours",
-    mins: "Mins",
-    secs: "Secs",
-  },
-  gifts: {
-    title: "Gifts",
-    message:
-      "The most important thing to us is your presence. However, if you wish to give an extra contribution, the IBAN is the following:",
-    iban_label: "Bank Transfer (IBAN)",
-    copy_btn: "Copy IBAN",
-    copied: "Copied!",
-    bertrand_note: "Note: for Carolina Bertrand gift vouchers are also welcome",
+  edict: {
+    title: "The Edict",
+    subtitle: "Invitation",
+    body: "By decree of the heart and will of the soul, let it be known that your presence is requested to celebrate the union of Carolina and Daniel. Prepare your finest attire and your highest spirits, for Porto shall host a journey for the ages.",
+    closing: "We await you on the front lines.",
   },
   lineup: [
     {
@@ -98,6 +89,15 @@ export const en = {
     child_note: "Note: Children under 3 do not require a formal seat.",
     remove_guest: "Remove",
   },
+  gifts: {
+    title: "Gifts",
+    message:
+      "The most important thing to us is your presence. However, if you wish to give an extra contribution, the IBAN is the following:",
+    iban_label: "Bank Transfer (IBAN)",
+    copy_btn: "Copy IBAN",
+    copied: "Copied!",
+    bertrand_note: "Note: for Carolina Bertrand gift vouchers are also welcome",
+  },
   location: {
     title: "Location",
     venue_name: "Mosteiro de São Bento da Vitória",
@@ -105,11 +105,5 @@ export const en = {
     description:
       "Both the ceremony and the reception will take place at this iconic venue in the heart of Porto.",
     cta_maps: "Open in Google Maps",
-  },
-  edict: {
-    title: "The Edict",
-    subtitle: "A Call to Arms",
-    body: "By decree of the heart and will of the soul, let it be known that your presence is requested to celebrate the union of Carolina and Daniel. Prepare your finest attire and your highest spirits, for Porto shall host a journey for the ages.",
-    closing: "We await you on the front lines.",
   },
 };

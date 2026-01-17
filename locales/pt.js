@@ -12,21 +12,12 @@ export const pt = {
     title: "Carolina & Daniel",
     location: "Porto, Portugal",
   },
-  countdown: {
-    days: "Dias",
-    hours: "Horas",
-    mins: "Min",
-    secs: "Seg",
-  },
-  gifts: {
-    title: "Presentes",
-    message:
-      "Queremos é que apareçam, mas se quiserem dar uma contribuição extra, podem enviar para o seguinte IBAN:",
-    iban_label: "Transferência Bancária (IBAN)",
-    copy_btn: "Copiar IBAN",
-    copied: "Copiado!",
-    bertrand_note:
-      "Nota: para a Carolina cheques-prenda da Bertrand também são bem-vindos.",
+  edict: {
+    title: "Edital",
+    subtitle: "Convite? Convocatória?... Convocatis?",
+    body: "Podíamos ter-nos ficado por ir ao notário e despachar as coisas, mas na verdade, era importante para nós ter uma festa para celebrar este momento importante nas nossas vidas! Por isso, e com esperança que não tivessem nada melhor para fazer neste belo Domingo, 21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso casamento, no Arquivo Distrital do Porto, seguido da receção no Mosteiro de São Bento da Vitória!",
+    closing:
+      "De uma maneira ou outra, são pessoas importantes para nós, e queremos partilhar este momento convosco!",
   },
   lineup: [
     {
@@ -99,6 +90,16 @@ export const pt = {
     child_note: "Nota: São consideras crianças até aos 8 anos.",
     remove_guest: "Remover",
   },
+  gifts: {
+    title: "Presentes",
+    message:
+      "Queremos é que apareçam, mas se quiserem dar uma contribuição extra, podem enviar para o seguinte IBAN:",
+    iban_label: "Transferência Bancária (IBAN)",
+    copy_btn: "Copiar IBAN",
+    copied: "Copiado!",
+    bertrand_note:
+      "Nota: para a Carolina cheques-prenda da Bertrand também são bem-vindos.",
+  },
   location: {
     title: "Localização",
     venue_name: "Mosteiro de São Bento da Vitória",
@@ -106,12 +107,5 @@ export const pt = {
     description:
       "A cerimónia e o copo d'água terão lugar neste espaço icónico no coração do Porto.",
     cta_maps: "Abrir no Google Maps",
-  },
-  edict: {
-    title: "Edital",
-    subtitle: "Convite? Convocatória?... Convocatis?",
-    body: "Podíamos ter-nos ficado por ir ao notário e despachar as coisas, mas na verdade, era importante para nós ter uma festa para celebrar este momento importante nas nossas vidas! Por isso, e com esperança que não tivessem nada melhor para fazer neste belo Domingo, 21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso casamento, no Arquivo Distrital do Porto, seguido da receção no Mosteiro de São Bento da Vitória!",
-    closing:
-      "De uma maneira ou outra, são pessoas importantes para nós, e queremos partilhar este momento convosco!",
   },
 };
