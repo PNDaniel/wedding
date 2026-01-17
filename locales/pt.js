@@ -1,12 +1,13 @@
 export const pt = {
   nav: {
     home: "Início",
+    edict: "Edital",
     lineup: "Alinhamento",
     rsvp: "Confirmar",
     gifts: "Presentes",
     location: "Localização",
   },
-  hero: {
+  home: {
     subtitle: "VAMOS CASAR",
     title: "Carolina & Daniel",
     location: "Porto, Portugal",
@@ -17,10 +18,6 @@ export const pt = {
     mins: "Min",
     secs: "Seg",
   },
-  // gifts: {
-  //   description:
-  //     "Queremos é que apareçam, mas se quiserem dar uma contribuição extra, o nosso IBAN é o PT50 0018 0003 6645 7649 0206 7, mas a Carolina aceite cheques-prenda da Bertrand.",
-  // },
   gifts: {
     title: "Presentes",
     message:
@@ -109,5 +106,12 @@ export const pt = {
     description:
       "A cerimónia e o copo d'água terão lugar neste espaço icónico no coração do Porto.",
     cta_maps: "Abrir no Google Maps",
+  },
+  edict: {
+    title: "Edital",
+    subtitle: "Convite? Convocatória?... Convocatis?",
+    body: "Podíamos ter-nos ficado por ir ao notário e despachar as coisas, mas na verdade, era importante para nós ter uma festa para celebrar este momento importante nas nossas vidas! Por isso, e com esperança que não tivessem nada melhor para fazer neste belo Domingo, 21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso casamento, no Arquivo Distrital do Porto, seguido da receção no Mosteiro de São Bento da Vitória!",
+    closing:
+      "De uma maneira ou outra, são pessoas importantes para nós, e queremos partilhar este momento convosco!",
   },
 };

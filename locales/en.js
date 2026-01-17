@@ -1,12 +1,13 @@
 export const en = {
   nav: {
     home: "Home",
+    edict: "Edict",
     lineup: "Lineup",
     rsvp: "RSVP",
     gifts: "Gifts",
     location: "Location",
   },
-  hero: {
+  home: {
     subtitle: "WE ARE GETTING MARRIED",
     title: "Carolina & Daniel",
     location: "Porto, Portugal",
@@ -104,5 +105,11 @@ export const en = {
     description:
       "Both the ceremony and the reception will take place at this iconic venue in the heart of Porto.",
     cta_maps: "Open in Google Maps",
+  },
+  edict: {
+    title: "The Edict",
+    subtitle: "A Call to Arms",
+    body: "By decree of the heart and will of the soul, let it be known that your presence is requested to celebrate the union of Carolina and Daniel. Prepare your finest attire and your highest spirits, for Porto shall host a journey for the ages.",
+    closing: "We await you on the front lines.",
   },
 };
