@@ -73,6 +73,7 @@ export const pt = {
   rsvp_form: {
     deadline:
       "Gostariamos de dizer que contamos convosco incondicionalmente, mas a organização precisa de confirmações prévias, pedimos o façam até 31 de Outubro de 2026.",
+    presence_error: "Falta confirmar a presença!",
     success_title: "Confirmado!",
     success_msg: "A sua resposta foi enviada. Mal podemos esperar!",
     name_label: "Nome Completo",

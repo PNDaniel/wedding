@@ -67,6 +67,15 @@
       .animate-slow-zoom {
         animation: slowZoom 20s ease-in-out infinite alternate;
       }
+      .toast-enter-active,
+      .toast-leave-active {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .toast-enter-from,
+      .toast-leave-to {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
     </style>
   </head>
   <body class="bg-stone-50 text-stone-900">
@@ -139,12 +148,6 @@
             >EN
           </span>
         </div>
-
-        <!-- <button
-          @click="toggleLang"
-          class="group relative flex items-center justify-center w-10 h-10 rounded-full bg-wedding-navy text-white text-[9px] font-black tracking-tighter shadow-lg shadow-wedding-navy/20 hover:bg-wedding-rose transition-colors">
-          {{ lang === 'pt' ? 'EN' : 'PT' }}
-        </button> -->
 
         <transition name="drawer">
           <div
@@ -272,119 +275,13 @@
             class="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-wedding-rose/20"></div>
         </div>
       </section>
-      <!-- 
-      <section id="lineup" class="py-24 px-6 max-w-6xl mx-auto">
-        <h2
-          class="text-4xl md:text-5xl text-center mb-20 font-serif text-wedding-navy italic">
-          {{ t.nav.lineup }}
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div
-            v-for="(item, index) in t.lineup"
-            :key="index"
-            :class="index === 6 ? 'md:col-span-2 md:mx-auto md:w-1/2' : ''"
-            class="group flex items-center gap-6 p-6 rounded-3xl bg-white border border-wedding-champagne shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-            <div
-              class="w-24 h-24 rounded-2xl bg-wedding-champagne/30 flex items-center justify-center flex-shrink-0 overflow-hidden border border-wedding-champagne">
-              <img
-                v-if="item.icon"
-                :src="item.icon"
-                class="w-full h-full object-contain scale-110 group-hover:scale-125 transition-transform duration-500" />
-              <span
-                v-else
-                class="text-4xl group-hover:rotate-12 transition-transform"
-                >{{ item.emoji }}</span
-              >
-            </div>
-
-            <div class="flex flex-col">
-              <span
-                class="text-xs font-black text-wedding-rose tracking-[0.2em] uppercase mb-1"
-                >{{ item.time }}</span
-              >
-              <h3 class="text-2xl font-serif text-wedding-navy">
-                {{ item.title }}
-              </h3>
-              <p
-                v-if="item.extra"
-                class="text-sm text-slate-500 italic mt-1 font-light leading-relaxed">
-                {{ item.extra }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section> -->
 
       <section id="lineup" class="py-24 px-6 bg-white overflow-hidden">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-4xl mx-auto">
           <h2
             class="text-4xl md:text-5xl text-center mb-24 font-serif text-wedding-navy italic">
             {{ t.nav.lineup }}
           </h2>
-
-          <div class="relative">
-            <div
-              class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-slate-100"></div>
-
-            <div class="space-y-24">
-              <div
-                v-for="(event, index) in t.lineup"
-                :key="index"
-                class="relative flex flex-col md:flex-row items-center w-full">
-                <div
-                  class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-white border border-slate-100 z-10 shadow-sm flex items-center justify-center text-lg">
-                  {{ event.emoji }}
-                </div>
-
-                <div
-                  :class="index % 2 === 0 ? 'md:order-1 md:flex md:justify-end' : 'md:order-2 md:flex md:justify-start'"
-                  class="w-full md:w-1/2 px-10 mb-8 md:mb-0">
-                  <div
-                    class="relative group max-w-[180px] md:max-w-[160px] w-full">
-                    <div
-                      class="aspect-square overflow-hidden rounded-2xl shadow-lg border-8 border-slate-50 transition-transform duration-500 group-hover:scale-105">
-                      <img
-                        :src="event.icon"
-                        class="w-full h-full object-cover"
-                        :alt="event.title" />
-                    </div>
-                    <div
-                      class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-wedding-navy text-white px-4 py-1 rounded-full text-xs font-mono shadow-xl whitespace-nowrap">
-                      {{ event.time }}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  :class="index % 2 === 0 ? 'md:order-2 md:text-left' : 'md:order-1 md:text-right'"
-                  class="w-full md:w-1/2 px-12 pl-16 md:pl-12">
-                  <h4 class="text-2xl font-serif italic text-wedding-navy mb-3">
-                    {{ event.title }}
-                  </h4>
-                  <p
-                    class="text-slate-400 font-light text-sm leading-relaxed max-w-xs"
-                    :class="index % 2 === 0 ? '' : 'ml-auto'">
-                    {{ event.extra }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex justify-center mt-20 opacity-20">
-            <svg
-              class="w-8 h-8 text-wedding-navy"
-              fill="currentColor"
-              viewBox="0 0 24 24">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      <section id="lineup" class="py-24 px-6 bg-white overflow-hidden">
-        <div class="max-w-4xl mx-auto">
           <div class="text-center mb-20">
             <span
               class="text-wedding-rose text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
@@ -411,7 +308,7 @@
                   :class="index % 2 === 0 ? 'md:order-1 md:justify-end md:pr-8' : 'md:order-2 md:justify-start md:pl-8'"
                   class="w-full md:w-1/2 flex pl-12 md:pl-0 mb-6 md:mb-0">
                   <div
-                    class="relative group max-w-[140px] md:max-w-[160px] w-full">
+                    class="relative group max-w-[140px] md:max-w-[300px] w-full">
                     <div
                       class="aspect-square overflow-hidden rounded-2xl shadow-md border-4 border-slate-50 transition-transform duration-500 group-hover:scale-105">
                       <img
@@ -460,7 +357,7 @@
 
       <section id="rsvp" class="py-24 bg-wedding-navy px-6">
         <div
-          class="max-w-xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-wedding-blue-mid/10">
+          class="max-w-2xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-wedding-blue-mid/10">
           <div class="bg-wedding-rose p-10 text-center text-white">
             <h2 class="text-4xl font-serif italic mb-2">{{ t.nav.rsvp }}</h2>
             <div class="w-12 h-0.5 bg-white/40 mx-auto mb-4"></div>
@@ -471,7 +368,7 @@
           </div>
 
           <div class="p-8 md:p-12">
-            <div v-if="submitted" class="text-center py-12 transition-all">
+            <div v-if="submitted" class="text-center py-12 animate-fade-in">
               <div
                 class="inline-flex items-center justify-center w-20 h-20 bg-wedding-rose/10 rounded-full mb-6">
                 <span class="text-4xl">✨</span>
@@ -487,9 +384,9 @@
             <form v-else @submit.prevent="submitForm" class="space-y-8">
               <div>
                 <label
-                  class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3"
-                  >{{ t.rsvp_form.name_label }}</label
-                >
+                  class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3">
+                  {{ t.rsvp_form.name_label }}
+                </label>
                 <input
                   v-model="form.name"
                   required
@@ -500,21 +397,27 @@
 
               <div>
                 <label
-                  class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3"
-                  >{{ t.rsvp_form.presence_label }}</label
-                >
+                  class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3">
+                  {{ t.rsvp_form.presence_label }}
+                </label>
                 <div class="flex gap-4">
                   <button
                     type="button"
-                    @click="form.attending = 'yes'"
-                    :class="form.attending === 'yes' ? 'bg-wedding-navy text-white shadow-lg' : 'bg-slate-50 text-slate-400'"
+                    @click="form.attending = 'yes'; showError = false"
+                    :class="[
+                form.attending === 'yes' ? 'bg-wedding-navy text-white shadow-lg scale-[1.02]' : 'bg-slate-50 text-slate-400',
+                showError ? 'border border-red-300 ring-2 ring-red-50' : 'border border-transparent'
+              ]"
                     class="flex-1 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all duration-300">
                     {{ t.rsvp_form.presence_yes }}
                   </button>
                   <button
                     type="button"
-                    @click="form.attending = 'no'"
-                    :class="form.attending === 'no' ? 'bg-wedding-purple text-white shadow-lg' : 'bg-slate-50 text-slate-400'"
+                    @click="form.attending = 'no'; showError = false"
+                    :class="[
+                form.attending === 'no' ? 'bg-wedding-purple text-white shadow-lg scale-[1.02]' : 'bg-slate-50 text-slate-400',
+                showError ? 'border border-red-300 ring-2 ring-red-50' : 'border border-transparent'
+              ]"
                     class="flex-1 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all duration-300">
                     {{ t.rsvp_form.presence_no }}
                   </button>
@@ -523,7 +426,7 @@
 
               <div
                 v-if="form.attending === 'yes'"
-                class="space-y-8 border-t border-slate-100 pt-8">
+                class="space-y-8 border-t border-slate-100 pt-8 animate-fade-in">
                 <div>
                   <label
                     class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-4">
@@ -549,11 +452,10 @@
                               v-model="guest.isChild"
                               class="accent-wedding-rose h-4 w-4" />
                             <span
-                              class="text-xs font-bold text-wedding-navy uppercase tracking-tighter"
-                              >{{ t.rsvp_form.is_child }}</span
-                            >
+                              class="text-xs font-bold text-wedding-navy uppercase tracking-tighter">
+                              {{ t.rsvp_form.is_child }}
+                            </span>
                           </label>
-
                           <button
                             type="button"
                             @click="removeGuest(index)"
@@ -561,12 +463,6 @@
                             {{ t.rsvp_form.remove_guest }}
                           </button>
                         </div>
-
-                        <p
-                          v-if="guest.isChild"
-                          class="text-[10px] italic text-wedding-blue-mid leading-tight bg-white p-2 rounded-lg">
-                          {{ t.rsvp_form.child_note }}
-                        </p>
                       </div>
                     </div>
 
@@ -592,10 +488,40 @@
                 </div>
               </div>
 
+              <transition name="fade">
+                <p
+                  v-if="showError"
+                  class="text-[10px] text-red-500 font-bold uppercase tracking-tighter text-center">
+                  ⚠️ {{ t.rsvp_form.presence_error }}
+                </p>
+              </transition>
+
               <button
                 type="submit"
-                class="w-full bg-wedding-rose hover:bg-wedding-navy text-white font-black uppercase tracking-[0.3em] py-5 rounded-2xl shadow-xl transition-all transform active:scale-95 text-[10px]">
-                {{ t.rsvp_form.submit_btn }}
+                :disabled="loading"
+                class="w-full relative py-5 rounded-2xl shadow-xl transition-all transform active:scale-95 text-[10px] font-black uppercase tracking-[0.3em] overflow-hidden"
+                :class="loading ? 'bg-slate-400 cursor-not-allowed' : 'bg-wedding-rose hover:bg-wedding-navy text-white'">
+                <span v-if="!loading">{{ t.rsvp_form.submit_btn }}</span>
+
+                <div v-else class="flex items-center justify-center gap-2">
+                  <svg
+                    class="animate-spin h-4 w-4 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span>{{ t.rsvp_form.sending }}</span>
+                </div>
               </button>
             </form>
           </div>
@@ -649,7 +575,7 @@
               class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square">
               <img
                 src="images/MosteiroFora.jpeg"
-                alt="Casa de Vilar"
+                alt="{{t.location.venue_name}}"
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
 
               <div
@@ -696,9 +622,9 @@
       </section>
 
       <footer class="py-12 text-center border-t border-slate-100">
-        <p class="font-serif italic text-2xl text-wedding-navy mb-4">C & D</p>
+        <p class="font-serif italic text-2xl text-wedding-purple mb-4">C & D</p>
         <p
-          class="text-[10px] font-black uppercase tracking-[0.5em] text-slate-300">
+          class="text-[10px] font-black uppercase tracking-[0.5em] text-wedding-purple">
           21.02.2027
         </p>
       </footer>
@@ -718,9 +644,18 @@
           };
 
           const submitted = ref(false);
+          const loading = ref(false); // Novo: controla o estado de envio
+          const showError = ref(false); // Novo: controla o erro de validação
+          const triggerError = () => {
+            showError.value = true;
+            // Auto-hide após 3 segundos (estilo Toast.LENGTH_SHORT)
+            setTimeout(() => {
+              showError.value = false;
+            }, 3000);
+          };
           const form = ref({
             name: "",
-            attending: "yes",
+            attending: null,
             dietary: "",
             additionalGuests: [],
           });
@@ -735,6 +670,14 @@
 
           const submitForm = async () => {
             console.log("Connecting to Google Sheets...");
+            if (!form.value.attending) {
+              // alert("Por favor, selecione se irá comparecer.");
+              triggerError(); // Chama a notificação pequena
+              return;
+            }
+
+            showError.value = false;
+            loading.value = true;
 
             // Add a simple loading state if you like
             try {
@@ -751,6 +694,8 @@
                 },
               );
 
+              await new Promise((resolve) => setTimeout(resolve, 1500));
+
               // Assumption of success due to no-cors limitations
               submitted.value = true;
 
@@ -762,6 +707,8 @@
             } catch (error) {
               console.error("Submission error:", error);
               alert(t.value.rsvp_form.error_msg || "Error");
+            } finally {
+              loading.value = false; // Desativa o loading
             }
           };
 
@@ -793,6 +740,8 @@
             addGuest,
             removeGuest,
             submitted,
+            loading,
+            showError,
             submitForm,
             isMenuOpen,
             toggleMenu,
@@ -805,3 +754,8 @@
     </script>
   </body>
 </html>
+
+Para Futuro - Ver TODOs no Notepad - Ver tamanho thumbnail do Lineup no
+Telemovel - Corrigir alinhamento de strings no Lineup - Reduzir subtitle do
+Confirmar para 3 linhas - Rever Dados a gravar no Excel (talvez fazer linha a
+linha os convidados) - Refazer Localização para ter os 2 edificios
