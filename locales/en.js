@@ -72,6 +72,7 @@ export const en = {
   rsvp_form: {
     deadline:
       "We would like to say that we count on you unconditionally, but the organization needs prior confirmations, so we ask that you do so by October 31st, 2026.",
+    presence_error: " Erro ",
     success_title: "Confirmed!",
     success_msg: "Your response has been sent. We can't wait!",
     name_label: "Full Name",

@@ -331,7 +331,7 @@
                   </h4>
                   <p
                     class="text-slate-400 font-light text-[13px] leading-relaxed max-w-[240px]"
-                    :class="index % 2 === 0 ? '' : 'ml-auto'">
+                    :class="index % 2 === 0 ? 'text-left' : 'text-left md:text-right md:ml-auto'">
                     {{ event.extra }}
                   </p>
                 </div>
@@ -569,53 +569,93 @@
       </section>
 
       <section id="location" class="py-24 px-6 bg-slate-50">
-        <div class="max-w-4xl mx-auto">
-          <div class="flex flex-col md:flex-row items-center gap-12">
-            <div
-              class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square">
-              <img
-                src="images/MosteiroFora.jpeg"
-                alt="{{t.location.venue_name}}"
-                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-20">
+            <h2 class="text-5xl font-serif italic text-wedding-navy mb-4">
+              {{ t.location.section_title }}
+            </h2>
+            <div class="w-16 h-0.5 bg-wedding-rose/30 mx-auto"></div>
+          </div>
 
+          <div class="space-y-32">
+            <div class="flex flex-col md:flex-row items-center gap-12">
               <div
-                class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm">
-                <span
-                  class="text-[10px] font-black uppercase tracking-widest text-wedding-navy"
-                  >Porto, PT</span
-                >
+                class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square w-full max-w-[400px]">
+                <img
+                  src="images/ArquivoDentro.jpeg"
+                  :alt="t.location.ceremony_venue"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div
+                  class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-navy">
+                    {{ t.location.ceremony_tag }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="w-full md:w-1/2 text-center md:text-left">
+                <h3
+                  class="text-xl font-bold uppercase tracking-widest text-wedding-rose mb-4">
+                  {{ t.location.ceremony_venue }}
+                </h3>
+                <p class="text-slate-500 font-light leading-relaxed mb-6">
+                  {{ t.location.ceremony_description }}
+                </p>
+                <p class="text-wedding-navy font-mono text-sm mb-8">
+                  {{ t.location.ceremony_address }}
+                </p>
+                <a
+                  :href="t.location.ceremony_maps_link"
+                  target="_blank"
+                  class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
+                  {{ t.location.cta_maps }}
+                </a>
               </div>
             </div>
 
-            <div class="w-full md:w-1/2 text-center md:text-left">
-              <h2 class="text-4xl font-serif italic text-wedding-navy mb-4">
-                {{ t.location.title }}
-              </h2>
-              <h3
-                class="text-xl font-bold uppercase tracking-widest text-wedding-rose mb-6">
-                {{ t.location.venue_name }}
-              </h3>
-
-              <p class="text-slate-500 font-light leading-relaxed mb-8">
-                {{ t.location.description }}
-              </p>
-
-              <div class="mb-10">
-                <p class="text-wedding-navy font-mono text-sm mb-2">
-                  {{ t.location.address }}
-                </p>
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+              <div
+                class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square w-full max-w-[400px]">
+                <img
+                  src="images/MosteiroFora.jpeg"
+                  :alt="t.location.reception_venue"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div
+                  class="absolute top-6 right-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-navy">
+                    {{ t.location.reception_tag }}
+                  </span>
+                </div>
               </div>
 
-              <a
-                href="https://www.google.com/maps/dir/?api=1&destination=Casa+de+Vilar+Porto"
-                target="_blank"
-                class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose shadow-lg shadow-wedding-navy/20 active:scale-95">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                </svg>
-                {{ t.location.cta_maps }}
-              </a>
+              <div class="w-full md:w-1/2 text-center md:text-right">
+                <h3
+                  class="text-xl font-bold uppercase tracking-widest text-wedding-rose mb-4">
+                  {{ t.location.reception_venue }}
+                </h3>
+                <p class="text-slate-500 font-light leading-relaxed mb-6">
+                  {{ t.location.reception_description }}
+                </p>
+                <p class="text-wedding-navy font-mono text-sm mb-8">
+                  {{ t.location.reception_address }}
+                </p>
+                <a
+                  :href="t.location.reception_maps_link"
+                  target="_blank"
+                  class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
+                  {{ t.location.cta_maps }}
+                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -755,7 +795,18 @@
   </body>
 </html>
 
-Para Futuro - Ver TODOs no Notepad - Ver tamanho thumbnail do Lineup no
-Telemovel - Corrigir alinhamento de strings no Lineup - Reduzir subtitle do
-Confirmar para 3 linhas - Rever Dados a gravar no Excel (talvez fazer linha a
-linha os convidados) - Refazer Localização para ter os 2 edificios
+<!--  
+Para Futuro: 
+- Ver tamanho thumbnail do Lineup no Telemovel 
+
+- Melhorar o RSVP em Mobile 
+- Verificar se o Nome pode ficar em branco no RSVP e se o Other também. 
+- Fazer mais validações no RSVP 
+- Rever Dados a gravar no Excel (talvez fazer linha a linha os convidados) - Refazer Localização para ter os 2 edificios 
+
+- Google Maps/Waze Logic: multi-choice the user choose between Maps and Waze. 
+- Image Optimization/Hosting: We’re currently using placeholders (like
+images/hero-photo.jpg). We haven't discussed the best way to serve these so the
+site loads fast on mobile. 
+- Gerar QR Code
+-->

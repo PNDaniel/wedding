@@ -73,6 +73,7 @@ export const pt = {
   rsvp_form: {
     deadline:
       "Gostariamos de dizer que contamos convosco incondicionalmente, mas a organização precisa de confirmações prévias, pedimos o façam até 31 de Outubro de 2026.",
+    //deadline: "Contamos convosco incondicionalmente, mas a organização precisa de confirmações, pedimos o façam até 31 de Outubro.",
     presence_error: "Falta confirmar a presença!",
     success_title: "Confirmado!",
     success_msg: "A sua resposta foi enviada. Mal podemos esperar!",
@@ -107,6 +108,24 @@ export const pt = {
     address: "R. de São Bento da Vitória 45, 4050-542 Porto",
     description:
       "A cerimónia e o copo d'água terão lugar neste espaço icónico no coração do Porto.",
+    cta_maps: "Abrir no Google Maps",
+  },
+  location: {
+    section_title: "Localização",
+    ceremony_tag: "A Cerimónia",
+    ceremony_venue: "Arquivo Distrital do Porto",
+    ceremony_description:
+      "Um monumento histórico de beleza singular onde trocaremos as nossas promessas. O início de um capítulo inesquecível numa atmosfera de paz e serenidade.",
+    ceremony_address: "Rua das Taipas 90, 4050-598 Porto",
+    ceremony_maps_link: "https://maps.app.goo.gl/TmAfoqAj2QPXxjL66",
+
+    reception_tag: "A Festa",
+    reception_venue: "Mosteiro de São Bento da Vitória",
+    reception_description:
+      "Após a cerimónia, recuperaremos as forças no Mosteiro. É mesmo ao lado, não é preciso uma nova deslocação de transportes!",
+    reception_address: "Rua de São Bento da Vitória 45, 4050-542 Porto",
+    reception_maps_link: "https://maps.app.goo.gl/BRjvQ6emUcboJLu39",
+
     cta_maps: "Abrir no Google Maps",
   },
 };
