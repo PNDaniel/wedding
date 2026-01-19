@@ -15,8 +15,9 @@ export const en = {
   edict: {
     title: "The Edict",
     subtitle: "Invitation",
-    body: "By decree of the heart and will of the soul, let it be known that your presence is requested to celebrate the union of Carolina and Daniel. Prepare your finest attire and your highest spirits, for Porto shall host a journey for the ages.",
-    closing: "We await you on the front lines.",
+    body: "We could have just gone to the registry office to sort things out, but truthfully, it was important to us to have a party to celebrate this moment in our lives! Therefore, and hoping that you have nothing better to do on this beautiful Sunday, February 21, 2027, we want to invite you to be present at our wedding, at the Porto District Archive, followed by the reception at the Monastery of São Bento da Vitória!.",
+    closing:
+      "We know you're coming from far away, so your presence would be especially meaningful!.",
   },
   lineup: [
     {
@@ -24,49 +25,49 @@ export const en = {
       emoji: "💍",
       icon: "images/Stage1.jpeg",
       title: "Ceremony",
-      extra: "The Old Chapel",
+      extra: "Don't worry, we'll provide translations!",
     },
     {
       time: "16:30",
       emoji: "🍸",
       icon: "images/Stage2.jpeg",
       title: "Cocktail Hour",
-      extra: "The Garden Terrace",
+      extra: "There will even be sushi!",
     },
     {
       time: "18:30",
       emoji: "🍽️",
       icon: "images/Stage3.jpeg",
       title: "Dinner",
-      extra: "Crystal Ballroom",
+      extra: "If anyone still has room",
     },
     {
       time: "21:00",
       emoji: "🎂",
       icon: "images/Stage4.jpeg",
-      title: "Cake Cutting",
-      extra: "Pool Area",
+      title: "Surprises",
+      extra: "Shenanigans",
     },
     {
       time: "21:30",
       emoji: "💃",
       icon: "images/Stage5.jpeg",
-      title: "The Party",
-      extra: "Music & Dance",
+      title: "Cake",
+      extra: "It will have chocolate",
     },
     {
       time: "00:00",
       emoji: "🍕",
       icon: "images/Stage6.jpeg",
-      title: "Midnight Snack",
-      extra: "Late night feast",
+      title: "Party",
+      extra: "Carolina will dance.",
     },
     {
       time: "02:00",
       emoji: "🚗",
       icon: "images/Stage7.jpeg",
-      title: "Grand Exit",
-      extra: "Shuttle Service",
+      title: "Closing",
+      extra: "Daniel is going to bed, you guys do whatever you want.",
     },
   ],
   rsvp_form: {
@@ -106,5 +107,23 @@ export const en = {
     description:
       "Both the ceremony and the reception will take place at this iconic venue in the heart of Porto.",
     cta_maps: "Open in Google Maps",
+  },
+  location: {
+    section_title: "Localização",
+    ceremony_tag: "Ceremony",
+    ceremony_venue: "Arquivo Distrital do Porto",
+    ceremony_description:
+      "Of course we want to get married amongst books, who do you take us for?",
+    ceremony_address: "Rua das Taipas 90, 4050-598 Porto",
+    ceremony_maps_link: "https://maps.app.goo.gl/TmAfoqAj2QPXxjL66",
+
+    reception_tag: "Reception",
+    reception_venue: "Mosteiro de São Bento da Vitória",
+    reception_description:
+      "Afterwards, we party right next door, so there's no need to worry about extra transportation!",
+    reception_address: "Rua de São Bento da Vitória 45, 4050-542 Porto",
+    reception_maps_link: "https://maps.app.goo.gl/BRjvQ6emUcboJLu39",
+
+    cta_maps: "Abrir no Google Maps",
   },
 };
