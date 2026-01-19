@@ -112,4 +112,7 @@ export const en = {
     cta_copy: "Copy Address",
     cta_copied: "Copied!",
   },
+  footer: {
+    thankyou: "Thank you",
+  },
 };

@@ -113,4 +113,7 @@ export const pt = {
     cta_copy: "Copiar Morada",
     cta_copied: "Copiado!",
   },
+  footer: {
+    thankyou: "Obrigado",
+  },
 };
