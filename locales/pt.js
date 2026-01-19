@@ -15,7 +15,7 @@ export const pt = {
   edict: {
     title: "Edital",
     subtitle: "Convite? Convocatória?... Convocatis?",
-    body: "Podíamos ter-nos ficado por ir ao notário e despachar as coisas, mas na verdade, era importante para nós ter uma festa para celebrar este momento importante nas nossas vidas! Por isso, e com esperança que não tenham nada melhor para fazer neste belo Domingo, 21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso casamento, no Arquivo Distrital do Porto, seguido de receção no Mosteiro de São Bento da Vitória!",
+    body: "Podíamos ter-nos ficado por ir ao notário e despachar as coisas, mas na verdade, era importante para nós ter uma festa para celebrar este momento nas nossas vidas! Por isso, e com esperança que não tenham nada melhor para fazer neste belo Domingo, 21 de Fevereiro de 2027, queremo-vos convidar para estarem presentes no nosso casamento, no Arquivo Distrital do Porto, seguido de receção no Mosteiro de São Bento da Vitória!",
     closing:
       "Por várias e diversas razões, são pessoas importantes para nós, e queremos partilhar este momento convosco!",
   },
@@ -114,6 +114,6 @@ export const pt = {
     cta_copied: "Copiado!",
   },
   footer: {
-    thankyou: "Obrigado",
+    thanks: "Obrigado!",
   },
 };

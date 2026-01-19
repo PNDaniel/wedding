@@ -441,7 +441,7 @@
                       class="bg-slate-50 p-4 rounded-2xl border border-slate-100 relative animate-fade-in">
                       <div class="flex flex-col gap-4">
                         <input
-                          v-model="guest.name"
+                          v-model.trim="guest.name"
                           type="text"
                           :placeholder="t.rsvp_form.guest_name_placeholder"
                           class="bg-white border-b border-slate-200 px-3 py-2 outline-none focus:border-wedding-rose transition-all font-serif" />
@@ -482,10 +482,15 @@
                     {{ t.rsvp_form.dietary_label }}
                   </label>
                   <textarea
+                    maxlength="200"
                     v-model="form.dietary"
                     rows="2"
                     class="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3 focus:border-wedding-rose outline-none transition-all text-sm"
-                    :placeholder="t.rsvp_form.dietary_placeholder"></textarea>
+                    :placeholder="t.rsvp_form.dietary_placeholder">
+                  </textarea>
+                  <p class="text-[9px] text-right text-slate-400">
+                    {{ form.dietary.length }}/200
+                  </p>
                 </div>
               </div>
 
@@ -750,7 +755,12 @@
           });
 
           const addGuest = () => {
-            form.value.additionalGuests.push({ name: "", isChild: false });
+            if (form.value.additionalGuests.length < 6) {
+              // Limite de 5, por exemplo
+              form.value.additionalGuests.push({ name: "", isChild: false });
+            } else {
+              alert("Limite de acompanhantes atingido.");
+            }
           };
 
           const removeGuest = (index) => {
@@ -865,9 +875,9 @@
 <!--  
 Para Futuro: 
 - Melhorar o RSVP em Mobile 
-- Verificar se o Nome pode ficar em branco no RSVP e se o Other também. 
-- Fazer mais validações no RSVP 
-- Rever Dados a gravar no Excel (talvez fazer linha a linha os convidados) - Refazer Localização para ter os 2 edificios 
- 
+- Rever Dados a gravar no Excel (talvez fazer linha a linha os convidados) 
+
+- Adicionar Contactos
+
 - Gerar QR Code
 -->

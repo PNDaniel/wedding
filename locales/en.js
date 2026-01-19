@@ -48,7 +48,7 @@ export const en = {
       time: "21:30",
       icon: "images/Stage5.webp",
       title: "Cake",
-      extra: "It will have chocolate",
+      extra: "There will be chocolate",
     },
     {
       time: "00:00",
@@ -113,6 +113,6 @@ export const en = {
     cta_copied: "Copied!",
   },
   footer: {
-    thankyou: "Thank you",
+    thanks: "Thank you!",
   },
 };
