@@ -22,49 +22,42 @@ export const en = {
   lineup: [
     {
       time: "15:00",
-      emoji: "💍",
       icon: "images/Stage1.jpeg",
       title: "Ceremony",
       extra: "Don't worry, we'll provide translations!",
     },
     {
       time: "16:30",
-      emoji: "🍸",
       icon: "images/Stage2.jpeg",
       title: "Cocktail Hour",
       extra: "There will even be sushi!",
     },
     {
       time: "18:30",
-      emoji: "🍽️",
       icon: "images/Stage3.jpeg",
       title: "Dinner",
       extra: "If anyone still has room",
     },
     {
       time: "21:00",
-      emoji: "🎂",
       icon: "images/Stage4.jpeg",
       title: "Surprises",
       extra: "Shenanigans",
     },
     {
       time: "21:30",
-      emoji: "💃",
       icon: "images/Stage5.jpeg",
       title: "Cake",
       extra: "It will have chocolate",
     },
     {
       time: "00:00",
-      emoji: "🍕",
       icon: "images/Stage6.jpeg",
       title: "Party",
       extra: "Carolina will dance.",
     },
     {
       time: "02:00",
-      emoji: "🚗",
       icon: "images/Stage7.jpeg",
       title: "Closing",
       extra: "Daniel is going to bed, you guys do whatever you want.",
@@ -99,14 +92,6 @@ export const en = {
     copy_btn: "Copy IBAN",
     copied: "Copied!",
     bertrand_note: "Note: for Carolina Bertrand gift vouchers are also welcome",
-  },
-  location: {
-    title: "Location",
-    venue_name: "Mosteiro de São Bento da Vitória",
-    address: "R. de São Bento da Vitória 45, 4050-542 Porto",
-    description:
-      "Both the ceremony and the reception will take place at this iconic venue in the heart of Porto.",
-    cta_maps: "Open in Google Maps",
   },
   location: {
     section_title: "Localização",

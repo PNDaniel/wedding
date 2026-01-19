@@ -22,49 +22,42 @@ export const pt = {
   lineup: [
     {
       time: "15:00",
-      emoji: "💍",
       icon: "images/Stage1.jpeg",
       title: "Cerimónia",
       extra: "Vai ser muito bonito",
     },
     {
       time: "16:30",
-      emoji: "🍸",
       icon: "images/Stage2.jpeg",
       title: "Copo de água",
       extra: "Sim, vai haver sushi",
     },
     {
       time: "18:30",
-      emoji: "🍽️",
       icon: "images/Stage3.jpeg",
       title: "Jantar",
       extra: "Para quem tiver espaço",
     },
     {
       time: "21:00",
-      emoji: "🎂",
       icon: "images/Stage4.jpeg",
       title: "Cenas",
       extra: "",
     },
     {
       time: "21:30",
-      emoji: "💃",
       icon: "images/Stage5.jpeg",
       title: "Bolo",
       extra: "Vai ter chocolate",
     },
     {
       time: "00:00",
-      emoji: "🍕",
       icon: "images/Stage6.jpeg",
       title: "Festa",
       extra: "A Carolina vai dançar",
     },
     {
       time: "02:00",
-      emoji: "🚗",
       icon: "images/Stage7.jpeg",
       title: "Fim da Festa",
       extra: "O Daniel vai dormir, vocês fazem o que quiserem",
@@ -73,7 +66,6 @@ export const pt = {
   rsvp_form: {
     deadline:
       "Gostariamos de dizer que contamos convosco incondicionalmente, mas a organização precisa de confirmações prévias, pedimos o façam até 31 de Outubro de 2026.",
-    //deadline: "Contamos convosco incondicionalmente, mas a organização precisa de confirmações, pedimos o façam até 31 de Outubro.",
     presence_error: "Falta confirmar a presença!",
     success_title: "Confirmado!",
     success_msg: "A sua resposta foi enviada. Mal podemos esperar!",
@@ -101,14 +93,6 @@ export const pt = {
     copied: "Copiado!",
     bertrand_note:
       "Nota: para a Carolina cheques-prenda da Bertrand também são bem-vindos.",
-  },
-  location: {
-    title: "Localização",
-    venue_name: "Mosteiro de São Bento da Vitória",
-    address: "R. de São Bento da Vitória 45, 4050-542 Porto",
-    description:
-      "A cerimónia e o copo d'água terão lugar neste espaço icónico no coração do Porto.",
-    cta_maps: "Abrir no Google Maps",
   },
   location: {
     section_title: "Localização",
