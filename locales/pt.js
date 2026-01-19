@@ -82,6 +82,9 @@ export const pt = {
     is_child: "É criança?",
     child_note: "Nota: São consideras crianças até aos 8 anos.",
     remove_guest: "Remover",
+    name_error: "Por favor, introduza o seu nome.",
+    presence_error: "Confirme se poderá estar presente.",
+    guest_name_error: "Por favor, preencha o nome de todos os acompanhantes.",
   },
   gifts: {
     title: "Presentes",

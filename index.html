@@ -417,8 +417,7 @@
                     @click="form.attending = 'no'; showError = false"
                     :class="[
                 form.attending === 'no' ? 'bg-wedding-purple text-white shadow-lg scale-[1.02]' : 'bg-slate-50 text-slate-400',
-                showError ? 'border border-red-300 ring-2 ring-red-50' : 'border border-transparent'
-              ]"
+                showError ? 'border border-red-300 ring-2 ring-red-50' : 'border border-transparent']"
                     class="flex-1 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all duration-300">
                     {{ t.rsvp_form.presence_no }}
                   </button>
@@ -493,12 +492,26 @@
                   </p>
                 </div>
               </div>
-
+              <!-- 
               <transition name="fade">
                 <p
                   v-if="showError"
                   class="text-[10px] text-red-500 font-bold uppercase tracking-tighter text-center">
                   ⚠️ {{ t.rsvp_form.presence_error }}
+                </p>
+              </transition> -->
+
+              <transition
+                enter-active-class="transition duration-300 ease-out"
+                enter-from-class="transform -translate-y-2 opacity-0"
+                enter-to-class="transform translate-y-0 opacity-100"
+                leave-active-class="transition duration-200 ease-in"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0">
+                <p
+                  v-if="showError"
+                  class="text-[10px] text-red-500 font-bold uppercase tracking-tighter text-center bg-red-50 py-2 rounded-lg border border-red-100">
+                  ⚠️ {{ errorMessage }}
                 </p>
               </transition>
 
@@ -738,8 +751,9 @@
           };
 
           const submitted = ref(false);
-          const loading = ref(false); // Novo: controla o estado de envio
-          const showError = ref(false); // Novo: controla o erro de validação
+          const loading = ref(false);
+          const showError = ref(false);
+          const errorMessage = ref("");
           const triggerError = () => {
             showError.value = true;
             // Auto-hide após 3 segundos (estilo Toast.LENGTH_SHORT)
@@ -769,11 +783,59 @@
 
           const submitForm = async () => {
             console.log("Connecting to Google Sheets...");
-            if (!form.value.attending) {
-              // alert("Por favor, selecione se irá comparecer.");
-              triggerError(); // Chama a notificação pequena
+
+            if (!form.value.name || form.value.name.trim().length === 0) {
+              errorMessage.value = t.value.rsvp_form.name_error; // Cria esta chave na tradução
+              showError.value = true;
               return;
             }
+
+            if (!form.value.attending) {
+              errorMessage.value = t.value.rsvp_form.presence_error;
+              showError.value = true;
+              // triggerError(); // Chama a notificação pequena
+              return;
+            }
+
+            // if (!form.value.attending) {
+            //   errorMessage.value = t.value.rsvp_form.presence_error;
+            //   // alert("Por favor, selecione se irá comparecer.");
+            //   triggerError(); // Chama a notificação pequena
+            //   return;
+            // }
+
+            if (form.value.attending === "no") {
+              form.value.additionalGuests = [];
+              form.value.dietary = "";
+            } else {
+              const hasInvalidGuest = form.value.additionalGuests.some(
+                (g) => !g.name || g.name.trim().length === 0,
+              );
+              if (hasInvalidGuest) {
+                errorMessage.value = t.value.rsvp_form.guest_name_error; // Cria esta chave
+                showError.value = true;
+                return;
+              }
+            }
+
+            // if (form.value.attending === "no") {
+            //   form.value.additionalGuests = [];
+            //   form.value.dietary = "";
+            // } else {
+            //   // Se 'sim' vem, validar se algum acompanhante tem nome vazio
+            //   const invalidGuest = form.value.additionalGuests.some(
+            //     (g) => !g.name || g.name.trim().length === 0,
+            //   );
+            //   if (invalidGuest) {
+            //     alert(
+            //       t.value.rsvp_form.guest_name_error ||
+            //         "Por favor, preencha o nome dos acompanhantes.",
+            //     );
+            //     errorMessage.value = t.value.rsvp_form.guest_name_error; // Cria esta chave
+            //     showError.value = true;
+            //     return;
+            //   }
+            // }
 
             showError.value = false;
             loading.value = true;
@@ -857,6 +919,7 @@
             submitted,
             loading,
             showError,
+            errorMessage,
             submitForm,
             isMenuOpen,
             toggleMenu,
