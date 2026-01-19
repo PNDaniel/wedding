@@ -22,50 +22,49 @@ export const en = {
   lineup: [
     {
       time: "15:00",
-      icon: "images/Stage1.jpeg",
+      icon: "images/Stage1.webp",
       title: "Ceremony",
       extra: "Don't worry, we'll provide translations!",
     },
     {
       time: "16:30",
-      icon: "images/Stage2.jpeg",
+      icon: "images/Stage2.webp",
       title: "Cocktail Hour",
       extra: "There will even be sushi!",
     },
     {
       time: "18:30",
-      icon: "images/Stage3.jpeg",
+      icon: "images/Stage3.webp",
       title: "Dinner",
       extra: "If anyone still has room",
     },
     {
       time: "21:00",
-      icon: "images/Stage4.jpeg",
+      icon: "images/Stage4.webp",
       title: "Surprises",
       extra: "Shenanigans",
     },
     {
       time: "21:30",
-      icon: "images/Stage5.jpeg",
+      icon: "images/Stage5.webp",
       title: "Cake",
       extra: "It will have chocolate",
     },
     {
       time: "00:00",
-      icon: "images/Stage6.jpeg",
+      icon: "images/Stage6.webp",
       title: "Party",
       extra: "Carolina will dance.",
     },
     {
       time: "02:00",
-      icon: "images/Stage7.jpeg",
+      icon: "images/Stage7.webp",
       title: "Closing",
       extra: "Daniel is going to bed, you guys do whatever you want.",
     },
   ],
   rsvp_form: {
-    deadline:
-      "We would like to say that we count on you unconditionally, but the organization needs prior confirmations, so we ask that you do so by October 31st, 2026.",
+    deadline: "We ask for your confirmation by October 31st 2026.",
     presence_error: " Erro ",
     success_title: "Confirmed!",
     success_msg: "Your response has been sent. We can't wait!",
@@ -110,5 +109,7 @@ export const en = {
     reception_maps_link: "https://maps.app.goo.gl/BRjvQ6emUcboJLu39",
 
     cta_maps: "Abrir no Google Maps",
+    cta_copy: "Copy Address",
+    cta_copied: "Copied!",
   },
 };

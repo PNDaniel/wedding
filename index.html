@@ -123,7 +123,8 @@
           </template>
         </div>
 
-        <div class="flex items-center gap-3">
+        <div
+          class="flex items-center gap-3 rounded-full px-2 border border-wedding-navy/5">
           <span
             :class="lang === 'pt' ? 'text-wedding-navy opacity-100' : 'text-wedding-navy/30'"
             class="text-[9px] font-black transition-opacity duration-300"
@@ -170,7 +171,7 @@
         class="relative h-screen min-h-[700px] w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 z-0">
           <img
-            src="images/MosteiroDentro.jpeg"
+            src="images/MosteiroDentro.webp"
             class="w-full h-full object-cover object-bottom scale-105 animate-slow-zoom"
             alt="Carolina & Daniel" />
 
@@ -296,7 +297,7 @@
             <div
               class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-slate-100"></div>
 
-            <div class="space-y-24">
+            <div class="space-y-12">
               <div
                 v-for="(event, index) in t.lineup"
                 :key="index"
@@ -308,7 +309,7 @@
                   :class="index % 2 === 0 ? 'md:order-1 md:justify-end md:pr-8' : 'md:order-2 md:justify-start md:pl-8'"
                   class="w-full md:w-1/2 flex pl-12 md:pl-0 mb-6 md:mb-0">
                   <div
-                    class="relative group max-w-[140px] md:max-w-[300px] w-full">
+                    class="relative group max-w-[200px] md:max-w-[300px] w-full">
                     <div
                       class="aspect-square overflow-hidden rounded-2xl shadow-md border-4 border-slate-50 transition-transform duration-500 group-hover:scale-105">
                       <img
@@ -388,7 +389,7 @@
                   {{ t.rsvp_form.name_label }}
                 </label>
                 <input
-                  v-model="form.name"
+                  v-model.trim="form.name"
                   required
                   type="text"
                   class="w-full bg-slate-50 border-b-2 border-slate-200 px-4 py-4 focus:border-wedding-rose outline-none transition-all font-serif text-lg text-wedding-navy rounded-t-xl"
@@ -582,7 +583,7 @@
               <div
                 class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square w-full max-w-[400px]">
                 <img
-                  src="images/ArquivoDentro.jpeg"
+                  src="images/ArquivoDentro.webp"
                   :alt="t.location.ceremony_venue"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div
@@ -605,16 +606,32 @@
                 <p class="text-wedding-navy font-mono text-sm mb-8">
                   {{ t.location.ceremony_address }}
                 </p>
-                <a
-                  :href="t.location.ceremony_maps_link"
-                  target="_blank"
-                  class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
-                  {{ t.location.cta_maps }}
-                </a>
+                <div
+                  class="flex flex-col sm:flex-row justify-center md:justify-start gap-3 mt-8">
+                  <a
+                    :href="t.location.ceremony_maps_link"
+                    target="_blank"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-wedding-navy text-white px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
+                    <svg
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    {{ t.location.cta_maps }}
+                  </a>
+
+                  <button
+                    @click="copyAddress(t.location.ceremony_address, 'ceremony')"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center bg-white border-2 border-wedding-navy/10 text-wedding-navy px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-slate-50 active:scale-95 min-w-[140px]">
+                    <span
+                      :class="copied === 'ceremony' ? 'text-green-600' : ''">
+                      {{ copyAddressStatus === 'ceremony' ?
+                      t.location.cta_copied : t.location.cta_copy }}
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -622,7 +639,7 @@
               <div
                 class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square w-full max-w-[400px]">
                 <img
-                  src="images/MosteiroFora.jpeg"
+                  src="images/MosteiroFora.webp"
                   :alt="t.location.reception_venue"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div
@@ -645,16 +662,32 @@
                 <p class="text-wedding-navy font-mono text-sm mb-8">
                   {{ t.location.reception_address }}
                 </p>
-                <a
-                  :href="t.location.reception_maps_link"
-                  target="_blank"
-                  class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
-                  {{ t.location.cta_maps }}
-                  <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
-                  </svg>
-                </a>
+                <div
+                  class="flex flex-col sm:flex-row justify-center md:justify-start gap-3 mt-8">
+                  <a
+                    :href="t.location.reception_maps_link"
+                    target="_blank"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-wedding-navy text-white px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
+                    <svg
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    {{ t.location.cta_maps }}
+                  </a>
+
+                  <button
+                    @click="copyAddress(t.location.reception_address, 'reception')"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center bg-white border-2 border-wedding-navy/10 text-wedding-navy px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-slate-50 active:scale-95 min-w-[140px]">
+                    <span
+                      :class="copied === 'reception' ? 'text-green-600' : ''">
+                      {{ copyAddressStatus === 'reception' ?
+                      t.location.cta_copied : t.location.cta_copy }}
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -772,6 +805,22 @@
             });
           };
 
+          const copyAddressStatus = ref("");
+
+          const copyAddress = (address, key) => {
+            navigator.clipboard
+              .writeText(address)
+              .then(() => {
+                copied.value = key;
+                // Volta ao texto original após 2 segundos
+                setTimeout(() => {
+                  copied.value = "";
+                }, 2000);
+              })
+              .catch((err) => {
+                console.error("Erro ao copiar: ", err);
+              });
+          };
           return {
             lang,
             t,
@@ -788,6 +837,8 @@
             iban,
             copyStatus,
             copyIban,
+            copyAddressStatus,
+            copyAddress,
           };
         },
       }).mount("#app");
@@ -805,8 +856,5 @@ Para Futuro:
 - Rever Dados a gravar no Excel (talvez fazer linha a linha os convidados) - Refazer Localização para ter os 2 edificios 
 
 - Google Maps/Waze Logic: multi-choice the user choose between Maps and Waze. 
-- Image Optimization/Hosting: We’re currently using placeholders (like
-images/hero-photo.jpg). We haven't discussed the best way to serve these so the
-site loads fast on mobile. 
 - Gerar QR Code
 -->
