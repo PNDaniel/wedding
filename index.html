@@ -7,7 +7,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wedding</title>
-    <!-- Este href cria o & estranho entre o Carolina e Daniel-->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
       rel="stylesheet" />
@@ -18,7 +17,6 @@
         theme: {
           extend: {
             colors: {
-              // Your Custom Palette
               // https://colorpalettes.net/color-palette-4567/
               "wedding-navy": "#02315E",
               "wedding-blue-deep": "#00457E",
@@ -27,7 +25,6 @@
               "wedding-purple": "#806491",
             },
             fontFamily: {
-              // Mapping your fonts
               serif: ['"Playfair Display"', "serif"],
               sans: ["Inter", "sans-serif"],
             },
@@ -183,11 +180,6 @@
         </div>
 
         <div class="relative z-10 text-center px-6 animate-fade-in-up">
-          <!-- <span
-            class="text-wedding-rose text-xs md:text-sm font-black uppercase tracking-[0.4em] mb-6 block drop-shadow-sm">
-            {{ t.home.subtitle }}
-          </span> -->
-
           <h1
             class="text-white text-6xl md:text-9xl font-serif italic mb-10 drop-shadow-2xl">
             {{ t.home.title }}
@@ -454,6 +446,7 @@
                             <span
                               class="text-xs font-bold text-wedding-navy uppercase tracking-tighter">
                               {{ t.rsvp_form.is_child }}
+                              <!-- Chix vai como menino das alianças. -->
                             </span>
                           </label>
                           <button
@@ -470,11 +463,8 @@
                       type="button"
                       @click="addGuest"
                       :disabled="form.additionalGuests.length >= 5"
-                      :class="[
-    form.additionalGuests.length >= 5
-      ? 'opacity-30 cursor-not-allowed border-slate-100' 
-      : 'hover:border-wedding-rose hover:text-wedding-rose'
-  ]"
+                      :class="[form.additionalGuests.length >= 5 ? 'opacity-30 cursor-not-allowed border-slate-100' 
+      : 'hover:border-wedding-rose hover:text-wedding-rose' ]"
                       class="w-full py-3 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 text-[10px] font-black uppercase tracking-widest transition-all">
                       {{ t.rsvp_form.add_guest_btn }}
                     </button>
@@ -498,14 +488,6 @@
                   </p>
                 </div>
               </div>
-              <!-- 
-              <transition name="fade">
-                <p
-                  v-if="showError"
-                  class="text-[10px] text-red-500 font-bold uppercase tracking-tighter text-center">
-                  ⚠️ {{ t.rsvp_form.presence_error }}
-                </p>
-              </transition> -->
 
               <transition
                 enter-active-class="transition duration-300 ease-out"
@@ -554,6 +536,7 @@
       </section>
 
       <section id="gifts" class="py-24 px-6 bg-white">
+        <!-- Normalmente dinheiros são com o CC, mas neste caso não é para ele.-->
         <div class="max-w-2xl mx-auto text-center">
           <h2 class="text-4xl font-serif italic text-wedding-navy mb-6">
             {{ t.gifts.title }}
@@ -589,6 +572,7 @@
           <p
             class="mt-8 text-[10px] font-medium uppercase tracking-widest text-wedding-purple">
             {{ t.gifts.bertrand_note }}
+            <!-- Já o Teca preferia Steam cards, mas pronto. -->
           </p>
         </div>
       </section>
@@ -762,7 +746,6 @@
           const errorMessage = ref("");
           const triggerError = () => {
             showError.value = true;
-            // Auto-hide após 3 segundos (estilo Toast.LENGTH_SHORT)
             setTimeout(() => {
               showError.value = false;
             }, 3000);
@@ -776,7 +759,6 @@
 
           const addGuest = () => {
             if (form.value.additionalGuests.length < 5) {
-              // Limite de 5, por exemplo
               form.value.additionalGuests.push({ name: "", isChild: false });
               showError.value = false;
               errorMessage.value = "";
@@ -793,7 +775,7 @@
             console.log("Connecting to Google Sheets...");
 
             if (!form.value.name || form.value.name.trim().length === 0) {
-              errorMessage.value = t.value.rsvp_form.name_error; // Cria esta chave na tradução
+              errorMessage.value = t.value.rsvp_form.name_error;
               showError.value = true;
               return;
             }
@@ -812,7 +794,7 @@
                 (g) => !g.name || g.name.trim().length === 0,
               );
               if (hasInvalidGuest) {
-                errorMessage.value = t.value.rsvp_form.guest_name_error; // Cria esta chave
+                errorMessage.value = t.value.rsvp_form.guest_name_error;
                 showError.value = true;
                 return;
               }
@@ -821,7 +803,6 @@
             if (form.value.additionalGuests.length < 6) {
               form.value.additionalGuests.push({ name: "", isChild: false });
             } else {
-              // Em vez de alert, usamos as nossas refs de erro
               errorMessage.value = t.value.rsvp_form.limit_reached;
               showError.value = true;
 
@@ -834,10 +815,9 @@
             showError.value = false;
             loading.value = true;
 
-            // Add a simple loading state if you like
             try {
               await fetch(
-                "https://script.google.com/macros/s/AKfycby5mgNRqwBjjpIw20T40Ua97EJNbs-gCaE1bOHjhbGSqQBmPeDUQLGmeEvAaKR7yDWG/exec",
+                "https://script.google.com/macros/s/AKfycbxBf6wD7-Poa8eSh3v1zXzpL6MG0FNb__aEYA848XFPJnYweuAXP_wqCyPDeIzEVwku/exec",
                 {
                   method: "POST",
                   mode: "no-cors",
@@ -862,7 +842,7 @@
               console.error("Submission error:", error);
               alert(t.value.rsvp_form.error_msg || "Error");
             } finally {
-              loading.value = false; // Desativa o loading
+              loading.value = false;
             }
           };
 
