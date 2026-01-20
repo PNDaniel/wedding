@@ -854,7 +854,6 @@
               // Assumption of success due to no-cors limitations
               submitted.value = true;
 
-              // Android equivalent of scrollTo(0, rsvp.top)
               const rsvpSection = document.getElementById("rsvp");
               if (rsvpSection) {
                 rsvpSection.scrollIntoView({ behavior: "smooth" });
@@ -931,9 +930,6 @@
 
 <!--  
 Para Futuro: 
-- Melhorar o RSVP em Mobile 
-- Rever Dados a gravar no Excel (talvez fazer linha a linha os convidados) 
-
 - Adicionar Contactos
 
 - Gerar QR Code
