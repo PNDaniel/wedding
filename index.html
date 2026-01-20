@@ -469,7 +469,13 @@
                     <button
                       type="button"
                       @click="addGuest"
-                      class="w-full py-3 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 text-[10px] font-black uppercase tracking-widest hover:border-wedding-rose hover:text-wedding-rose transition-all">
+                      :disabled="form.additionalGuests.length >= 5"
+                      :class="[
+    form.additionalGuests.length >= 5
+      ? 'opacity-30 cursor-not-allowed border-slate-100' 
+      : 'hover:border-wedding-rose hover:text-wedding-rose'
+  ]"
+                      class="w-full py-3 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 text-[10px] font-black uppercase tracking-widest transition-all">
                       {{ t.rsvp_form.add_guest_btn }}
                     </button>
                   </div>
@@ -484,7 +490,7 @@
                     maxlength="200"
                     v-model="form.dietary"
                     rows="2"
-                    class="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3 focus:border-wedding-rose outline-none transition-all text-sm"
+                    class="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3 focus:border-wedding-rose outline-none transition-all text-base"
                     :placeholder="t.rsvp_form.dietary_placeholder">
                   </textarea>
                   <p class="text-[9px] text-right text-slate-400">
@@ -769,9 +775,11 @@
           });
 
           const addGuest = () => {
-            if (form.value.additionalGuests.length < 6) {
+            if (form.value.additionalGuests.length < 5) {
               // Limite de 5, por exemplo
               form.value.additionalGuests.push({ name: "", isChild: false });
+              showError.value = false;
+              errorMessage.value = "";
             } else {
               alert("Limite de acompanhantes atingido.");
             }
@@ -793,16 +801,8 @@
             if (!form.value.attending) {
               errorMessage.value = t.value.rsvp_form.presence_error;
               showError.value = true;
-              // triggerError(); // Chama a notificação pequena
               return;
             }
-
-            // if (!form.value.attending) {
-            //   errorMessage.value = t.value.rsvp_form.presence_error;
-            //   // alert("Por favor, selecione se irá comparecer.");
-            //   triggerError(); // Chama a notificação pequena
-            //   return;
-            // }
 
             if (form.value.attending === "no") {
               form.value.additionalGuests = [];
@@ -818,24 +818,18 @@
               }
             }
 
-            // if (form.value.attending === "no") {
-            //   form.value.additionalGuests = [];
-            //   form.value.dietary = "";
-            // } else {
-            //   // Se 'sim' vem, validar se algum acompanhante tem nome vazio
-            //   const invalidGuest = form.value.additionalGuests.some(
-            //     (g) => !g.name || g.name.trim().length === 0,
-            //   );
-            //   if (invalidGuest) {
-            //     alert(
-            //       t.value.rsvp_form.guest_name_error ||
-            //         "Por favor, preencha o nome dos acompanhantes.",
-            //     );
-            //     errorMessage.value = t.value.rsvp_form.guest_name_error; // Cria esta chave
-            //     showError.value = true;
-            //     return;
-            //   }
-            // }
+            if (form.value.additionalGuests.length < 6) {
+              form.value.additionalGuests.push({ name: "", isChild: false });
+            } else {
+              // Em vez de alert, usamos as nossas refs de erro
+              errorMessage.value = t.value.rsvp_form.limit_reached;
+              showError.value = true;
+
+              // Opcional: Esconder a mensagem de erro automaticamente após 3 segundos
+              setTimeout(() => {
+                showError.value = false;
+              }, 3000);
+            }
 
             showError.value = false;
             loading.value = true;

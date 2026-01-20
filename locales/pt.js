@@ -85,6 +85,7 @@ export const pt = {
     name_error: "Por favor, introduza o seu nome.",
     presence_error: "Confirme se poderá estar presente.",
     guest_name_error: "Por favor, preencha o nome de todos os acompanhantes.",
+    limit_reached: "Limite máximo de 6 acompanhantes atingido.",
   },
   gifts: {
     title: "Presentes",

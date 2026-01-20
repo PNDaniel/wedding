@@ -82,6 +82,10 @@ export const en = {
     is_child: "Child?",
     child_note: "Note: Children under 3 do not require a formal seat.",
     remove_guest: "Remove",
+    name_error: "Please, fill out your name.",
+    presence_error: "Confirm if you can attend.",
+    guest_name_error: "Please, fill the name of all companions",
+    limit_reached: "Maximum limit of 6 guests reached.",
   },
   gifts: {
     title: "Gifts",
