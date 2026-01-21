@@ -68,7 +68,7 @@ export const en = {
     presence_error: " Erro ",
     success_title: "Confirmed!",
     success_msg: "Your response has been sent. We can't wait!",
-    name_label: "Full Name",
+    name_label: "Name",
     name_placeholder: "Ex: Carolina & Daniel",
     presence_label: "Will you attend?",
     presence_yes: "Yes, I do!",

@@ -235,6 +235,15 @@
               <span
                 class="text-wedding-rose font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
                 {{ t.edict.subtitle }}
+                <!-- 
+                  Portus, 20 Januarius MMXXVI
+                  Karateca
+                  Beigustus
+                  Teresa
+                  Fiscal 
+                  Ahtnamas
+                  Abrótea
+                -->
               </span>
 
               <h2
@@ -508,7 +517,7 @@
                 :disabled="loading"
                 class="w-full relative py-5 rounded-2xl shadow-xl transition-all transform active:scale-95 text-[10px] font-black uppercase tracking-[0.3em] overflow-hidden"
                 :class="loading ? 'bg-slate-400 cursor-not-allowed' : 'bg-wedding-rose hover:bg-wedding-navy text-white'">
-                <span v-if="!loading">{{ t.rsvp_form.submit_btn }}</span>
+                <span v-if="!loading"> {{ t.rsvp_form.submit_btn }} </span>
 
                 <div v-else class="flex items-center justify-center gap-2">
                   <svg
@@ -734,8 +743,15 @@
 
       createApp({
         setup() {
-          const isMenuOpen = ref(false);
+          const content = { en, pt };
+          const t = computed(() => content[lang.value]);
 
+          const lang = ref("pt");
+          const toggleLang = () => {
+            lang.value = lang.value === "en" ? "pt" : "en";
+          };
+
+          const isMenuOpen = ref(false);
           const toggleMenu = () => {
             isMenuOpen.value = !isMenuOpen.value;
           };
@@ -744,12 +760,7 @@
           const loading = ref(false);
           const showError = ref(false);
           const errorMessage = ref("");
-          const triggerError = () => {
-            showError.value = true;
-            setTimeout(() => {
-              showError.value = false;
-            }, 3000);
-          };
+
           const form = ref({
             name: "",
             attending: null,
@@ -758,12 +769,17 @@
           });
 
           const addGuest = () => {
-            if (form.value.additionalGuests.length < 5) {
+            const GUESTS_LIMIT = 5;
+            if (form.value.additionalGuests.length < GUESTS_LIMIT) {
               form.value.additionalGuests.push({ name: "", isChild: false });
               showError.value = false;
               errorMessage.value = "";
             } else {
-              alert("Limite de acompanhantes atingido.");
+              errorMessage.value = t.value.rsvp_form.limit_reached;
+              showError.value = true;
+              setTimeout(() => {
+                showError.value = false;
+              }, 3000);
             }
           };
 
@@ -800,18 +816,6 @@
               }
             }
 
-            if (form.value.additionalGuests.length < 6) {
-              form.value.additionalGuests.push({ name: "", isChild: false });
-            } else {
-              errorMessage.value = t.value.rsvp_form.limit_reached;
-              showError.value = true;
-
-              // Opcional: Esconder a mensagem de erro automaticamente após 3 segundos
-              setTimeout(() => {
-                showError.value = false;
-              }, 3000);
-            }
-
             showError.value = false;
             loading.value = true;
 
@@ -846,28 +850,18 @@
             }
           };
 
-          const lang = ref("pt");
-          const content = { en, pt };
-          const t = computed(() => content[lang.value]);
-
-          const toggleLang = () => {
-            lang.value = lang.value === "en" ? "pt" : "en";
-          };
-
           const iban = "PT50 0018 0003 6645 7649 0206 7";
-          const copyStatus = ref(false);
-
+          const copyIbanStatus = ref(false);
           const copyIban = () => {
             navigator.clipboard.writeText(iban).then(() => {
-              copyStatus.value = true;
+              copyIbanStatus.value = true;
               setTimeout(() => {
-                copyStatus.value = false;
+                copyIbanStatus.value = false;
               }, 2000);
             });
           };
 
           const copyAddressStatus = ref("");
-
           const copyAddress = (address, key) => {
             navigator.clipboard
               .writeText(address)
@@ -897,7 +891,7 @@
             isMenuOpen,
             toggleMenu,
             iban,
-            copyStatus,
+            copyIbanStatus,
             copyIban,
             copyAddressStatus,
             copyAddress,
