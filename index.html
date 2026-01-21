@@ -1,97 +1,910 @@
-<!DOCTYPE html>
+<!doctype html>
+<!-- Não sejam cuscos! Ass: Abrótea.
+     Se forem mais novos que eu, prancha! Ass: Karateca 
+-->
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding RSVP</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "media",
+        theme: {
+          extend: {
+            colors: {
+              // https://colorpalettes.net/color-palette-4567/
+              "wedding-navy": "#02315E",
+              "wedding-blue-deep": "#00457E",
+              "wedding-blue-mid": "#2F70AF",
+              "wedding-rose": "#B9848C",
+              "wedding-purple": "#806491",
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', "serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
-        /* Ensures the scroll padding accounts for the sticky header height */
-        section { scroll-margin-top: 70px; }
-    </style>
-</head>
-<body class="bg-stone-50 text-stone-900">
-
-<div id="app">
-    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-md shadow-sm z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex gap-4 overflow-x-auto text-sm font-medium">
-            <a href="#hero">{{ t.nav.home }}</a>
-            <a href="#lineup">{{ t.nav.lineup }}</a>
-            <a href="#rsvp">{{ t.nav.rsvp }}</a>
-            <a href="#gifts">{{ t.nav.gifts }}</a>
-            <a href="#location">{{ t.nav.location }}</a>
-        </div>
-        
-        <button @click="toggleLang" class="border px-3 py-1 rounded-full text-xs font-bold bg-stone-800 text-white">
-            {{ lang === 'en' ? 'PT' : 'EN' }}
-        </button>
-    </nav>
-
-    <section id="hero" class="h-screen flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('https://via.placeholder.com/1920x1080')">
-        <div class="bg-white/70 p-10 text-center rounded">
-            <h1 class="text-5xl font-serif mb-2">{{ t.hero.title }}</h1>
-            <p class="text-xl italic">{{ t.hero.subtitle }}</p>
-        </div>
-    </section>
-
-    <section id="lineup" class="py-20 px-6 max-w-4xl mx-auto">
-        <h2 class="text-3xl text-center mb-12 font-serif">{{ t.nav.lineup }}</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div v-for="n in 6" :key="n" class="border-l-2 border-stone-300 pl-4 py-4">
-                <span class="text-stone-400 text-sm italic">Stage 0{{n}}</span>
-                <h3 class="text-xl font-bold">Event Name</h3>
-                <p>Detailed info about this stage of the wedding.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="rsvp" class="py-20 bg-stone-200 px-6">
-        <div class="max-w-md mx-auto bg-white p-8 rounded shadow">
-            <h2 class="text-2xl mb-6 font-serif text-center">{{ t.nav.rsvp }}</h2>
-            <p class="text-center italic text-stone-500">Form Placeholder</p>
-        </div>
-    </section>
-
-    <section id="gifts" class="py-20 px-6 text-center max-w-2xl mx-auto">
-        <h2 class="text-3xl mb-6 font-serif">{{ t.nav.gifts }}</h2>
-        <p>{{ t.gifts.description }}</p>
-    </section>
-
-    <section id="location" class="h-96 bg-stone-300 flex items-center justify-center">
-        <span class="text-xl font-serif">{{ t.nav.location }} (Google Maps Embed)</span>
-    </section>
-</div>
-
-<script>
-    const { createApp, ref, computed } = Vue;
-
-    createApp({
-        setup() {
-            const lang = ref('en');
-
-            const content = {
-                en: {
-                    nav: { home: 'Home', lineup: 'Lineup', rsvp: 'RSVP', gifts: 'Gifts', location: 'Location' },
-                    hero: { title: 'Sarah & Mark', subtitle: 'We are getting married!' },
-                    gifts: { description: 'Your presence is the greatest gift, but if you wish to contribute...' }
-                },
-                pt: {
-                    nav: { home: 'Início', lineup: 'Agenda', rsvp: 'Confirmar', gifts: 'Presentes', location: 'Localização' },
-                    hero: { title: 'Sarah e Mark', subtitle: 'Vamos casar!' },
-                    gifts: { description: 'A sua presença é o melhor presente, mas se desejar contribuir...' }
-                }
-            };
-
-            const t = computed(() => content[lang.value]);
-
-            const toggleLang = () => {
-                lang.value = lang.value === 'en' ? 'pt' : 'en';
-            };
-
-            return { lang, t, toggleLang };
+      html {
+        scroll-behavior: smooth;
+      }
+      section {
+        scroll-margin-top: 80px;
+      }
+      body {
+        padding-top: 64px; /* Matches the h-16 (64px) height of the nav */
+      }
+      .drawer-enter-active,
+      .drawer-leave-active {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .drawer-enter-from,
+      .drawer-leave-to {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      @keyframes slowZoom {
+        0% {
+          transform: scale(1);
         }
-    }).mount('#app');
-</script>
-</body>
+        100% {
+          transform: scale(1.1);
+        }
+      }
+
+      .animate-slow-zoom {
+        animation: slowZoom 20s ease-in-out infinite alternate;
+      }
+      .toast-enter-active,
+      .toast-leave-active {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .toast-enter-from,
+      .toast-leave-to {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+    </style>
+  </head>
+  <body class="bg-stone-50 text-stone-900">
+    <div id="app">
+      <nav
+        class="fixed top-0 left-0 right-0 z-[100] h-20 bg-white/80 backdrop-blur-md border-b border-wedding-navy/5 px-6 flex items-center justify-between">
+        <button
+          @click="isMenuOpen = !isMenuOpen"
+          class="md:hidden p-2 text-wedding-navy">
+          <svg
+            v-if="!isMenuOpen"
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+          <svg
+            v-else
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="hidden md:flex flex-1 justify-center items-center gap-2">
+          <template v-for="(label, key) in t.nav" :key="key">
+            <a
+              :href="'#' + key"
+              class="px-5 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-wedding-navy/60 hover:text-wedding-navy hover:bg-slate-50 rounded-full transition-all duration-300">
+              {{ label }}
+            </a>
+            <span
+              class="last:hidden w-1 h-1 bg-wedding-rose rounded-full opacity-40"></span>
+          </template>
+        </div>
+
+        <div
+          class="flex items-center gap-3 rounded-full px-2 border border-wedding-navy/5">
+          <span
+            :class="lang === 'pt' ? 'text-wedding-navy opacity-100' : 'text-wedding-navy/30'"
+            class="text-[9px] font-black transition-opacity duration-300"
+            >PT
+          </span>
+
+          <button
+            @click="toggleLang"
+            class="relative w-12 h-6 bg-slate-100 rounded-full p-1 transition-colors duration-500 hover:bg-slate-200"
+            role="switch"
+            :aria-checked="lang === 'en'">
+            <div
+              :class="lang === 'en' ? 'translate-x-6 bg-wedding-rose' : 'translate-x-0 bg-wedding-navy'"
+              class="w-4 h-4 rounded-full transition-all duration-300 ease-in-out shadow-sm flex items-center justify-center">
+              <div class="w-1 h-1 bg-white/20 rounded-full"></div>
+            </div>
+          </button>
+
+          <span
+            :class="lang === 'en' ? 'text-wedding-navy opacity-100' : 'text-wedding-navy/30'"
+            class="text-[9px] font-black transition-opacity duration-300"
+            >EN
+          </span>
+        </div>
+
+        <transition name="drawer">
+          <div
+            v-if="isMenuOpen"
+            class="fixed left-0 right-0 top-20 bg-white z-[105] md:hidden p-8 shadow-2xl rounded-b-[2rem] border-b border-slate-100 flex flex-col gap-6 items-center text-center">
+            <a
+              v-for="(label, key) in t.nav"
+              :key="key"
+              :href="'#' + key"
+              @click="isMenuOpen = false"
+              class="text-2xl font-serif italic text-wedding-navy hover:text-wedding-rose transition-colors">
+              {{ label }}
+            </a>
+          </div>
+        </transition>
+      </nav>
+
+      <section
+        id="home"
+        class="relative h-screen min-h-[700px] w-full overflow-hidden flex items-center justify-center">
+        <div class="absolute inset-0 z-0">
+          <img
+            src="images/MosteiroDentro.webp"
+            class="w-full h-full object-cover object-bottom scale-105 animate-slow-zoom"
+            alt="Carolina & Daniel" />
+
+          <div
+            class="absolute inset-0 bg-gradient-to-b from- wedding-navy/80 via-wedding-navy/20 to-wedding-rose/30"></div>
+
+          <div
+            class="absolute inset-0 shadow-[inset_0_0_150px_rgba(15,23,42,0.6)]"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 animate-fade-in-up">
+          <h1
+            class="text-white text-6xl md:text-9xl font-serif italic mb-10 drop-shadow-2xl">
+            {{ t.home.title }}
+          </h1>
+
+          <div class="flex items-center justify-center gap-4 mb-10 opacity-60">
+            <div class="w-12 h-px bg-white"></div>
+            <div class="w-2 h-2 rounded-full border border-white"></div>
+            <div class="w-12 h-px bg-white"></div>
+          </div>
+
+          <div class="text-white space-y-3">
+            <p
+              class="text-2xl md:text-4xl font-light tracking-[0.2em] font-serif text-white">
+              21 . 02 . 2027
+            </p>
+            <p
+              class="text-[10px] md:text-xs font-black uppercase tracking-[0.5em] text-white">
+              {{ t.home.location }}
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 opacity-70">
+          <a href="#lineup" class="text-white animate-bounce block">
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <section id="edict" class="py-24 px-6 bg-slate-50 overflow-hidden">
+        <div class="max-w-2xl mx-auto relative">
+          <div
+            class="bg-[#fdfbf7] p-10 md:p-20 shadow-xl relative border-t-8 border-wedding-navy rounded-sm animate-fade-in-up">
+            <div
+              class="absolute inset-0 opacity-[0.03] pointer-events-none"
+              style="
+                background-image: url(&quot;https://www.transparenttextures.com/patterns/p6.png&quot;);
+              "></div>
+
+            <div class="relative z-10 text-center">
+              <span
+                class="text-wedding-rose font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
+                {{ t.edict.subtitle }}
+                <!-- 
+                  Portus, 20 Januarius MMXXVI
+                  Karateca
+                  Beigustus
+                  Teresa
+                  Fiscal 
+                  Ahtnamas
+                  Abrótea
+                -->
+              </span>
+
+              <h2
+                class="text-5xl font-serif italic text-wedding-navy mb-10 pb-6 border-b border-wedding-navy/10">
+                {{ t.edict.title }}
+              </h2>
+
+              <p
+                v-html="t.edict.body"
+                class="text-wedding-navy/80 font-serif text-lg md:text-xl leading-[1.9] text-justify [hyphens:auto] [text-justification:inter-word] max-w-md mx-auto mb-12 italic opacity-90"></p>
+
+              <div class="w-16 h-px bg-wedding-rose mx-auto mb-10"></div>
+
+              <p
+                class="text-[11px] font-black uppercase tracking-[0.3em] text-wedding-navy">
+                {{ t.edict.closing }}
+              </p>
+            </div>
+
+            <div
+              class="absolute -bottom-6 right-10 w-16 h-16 bg-wedding-rose rounded-full shadow-lg flex items-center justify-center border-4 border-wedding-rose/50 transform rotate-12">
+              <span class="text-white font-serif italic text-xl select-none"
+                >C&D</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-wedding-rose/20"></div>
+          <div
+            class="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-wedding-rose/20"></div>
+        </div>
+      </section>
+
+      <section id="lineup" class="py-24 px-6 bg-white overflow-hidden">
+        <div class="max-w-4xl mx-auto">
+          <h2
+            class="text-4xl md:text-5xl text-center mb-24 font-serif text-wedding-navy italic">
+            {{ t.nav.lineup }}
+          </h2>
+          <div class="text-center mb-20">
+            <span
+              class="text-wedding-rose text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">
+              {{ t.lineup.subtitle }}
+            </span>
+            <h2 class="text-5xl font-serif italic text-wedding-navy">
+              {{ t.lineup.title }}
+            </h2>
+          </div>
+
+          <div class="relative">
+            <div
+              class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-slate-100"></div>
+
+            <div class="space-y-12">
+              <div
+                v-for="(event, index) in t.lineup"
+                :key="index"
+                class="relative flex flex-col md:flex-row items-center w-full">
+                <div
+                  class="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full bg-wedding-rose border-4 border-white z-10 shadow-sm"></div>
+
+                <div
+                  :class="index % 2 === 0 ? 'md:order-1 md:justify-end md:pr-8' : 'md:order-2 md:justify-start md:pl-8'"
+                  class="w-full md:w-1/2 flex pl-12 md:pl-0 mb-6 md:mb-0">
+                  <div
+                    class="relative group max-w-[200px] md:max-w-[300px] w-full">
+                    <div
+                      class="aspect-square overflow-hidden rounded-2xl shadow-md border-4 border-slate-50 transition-transform duration-500 group-hover:scale-105">
+                      <img
+                        :src="event.icon"
+                        class="w-full h-full object-cover"
+                        :alt="event.title" />
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  :class="index % 2 === 0 ? 'md:order-2 md:text-left md:pl-8' : 'md:order-1 md:text-right md:pr-8'"
+                  class="w-full md:w-1/2 pl-12 md:pl-0">
+                  <span
+                    class="text-wedding-rose font-mono text-sm tracking-tighter block mb-1">
+                    {{ event.time }}
+                  </span>
+                  <h4 class="text-xl font-serif italic text-wedding-navy mb-2">
+                    {{ event.title }}
+                  </h4>
+                  <p
+                    class="text-slate-400 font-light text-[13px] leading-relaxed max-w-[240px]"
+                    :class="index % 2 === 0 ? 'text-left' : 'text-left md:text-right md:ml-auto'">
+                    {{ event.extra }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center mt-24 opacity-20">
+            <svg
+              class="w-6 h-6 text-wedding-navy"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1"
+                d="M12 21a9.003 9.003 0 008.34-13L12 3 3.66 8a9.003 9.003 0 008.34 13z" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <section id="rsvp" class="py-24 bg-wedding-navy px-6">
+        <div
+          class="max-w-2xl mx-auto bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-wedding-blue-mid/10">
+          <div class="bg-wedding-rose p-10 text-center text-white">
+            <h2 class="text-4xl font-serif italic mb-2">{{ t.nav.rsvp }}</h2>
+            <div class="w-12 h-0.5 bg-white/40 mx-auto mb-4"></div>
+            <p
+              class="text-[10px] font-black uppercase tracking-[0.3em] opacity-90">
+              {{ t.rsvp_form.deadline }}
+            </p>
+          </div>
+
+          <div class="p-8 md:p-12">
+            <div v-if="submitted" class="text-center py-12 animate-fade-in">
+              <div
+                class="inline-flex items-center justify-center w-20 h-20 bg-wedding-rose/10 rounded-full mb-6">
+                <span class="text-4xl">✨</span>
+              </div>
+              <h3 class="text-3xl font-serif text-wedding-navy mb-4">
+                {{ t.rsvp_form.success_title }}
+              </h3>
+              <p class="text-slate-500 font-light leading-relaxed">
+                {{ t.rsvp_form.success_msg }}
+              </p>
+            </div>
+
+            <form v-else @submit.prevent="submitForm" class="space-y-8">
+              <div>
+                <label
+                  class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3">
+                  {{ t.rsvp_form.name_label }}
+                </label>
+                <input
+                  v-model.trim="form.name"
+                  required
+                  type="text"
+                  class="w-full bg-slate-50 border-b-2 border-slate-200 px-4 py-4 focus:border-wedding-rose outline-none transition-all font-serif text-lg text-wedding-navy rounded-t-xl"
+                  :placeholder="t.rsvp_form.name_placeholder" />
+              </div>
+
+              <div>
+                <label
+                  class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3">
+                  {{ t.rsvp_form.presence_label }}
+                </label>
+                <div class="flex gap-4">
+                  <button
+                    type="button"
+                    @click="form.attending = 'yes'; showError = false"
+                    :class="[
+                form.attending === 'yes' ? 'bg-wedding-navy text-white shadow-lg scale-[1.02]' : 'bg-slate-50 text-slate-400',
+                showError ? 'border border-red-300 ring-2 ring-red-50' : 'border border-transparent'
+              ]"
+                    class="flex-1 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all duration-300">
+                    {{ t.rsvp_form.presence_yes }}
+                  </button>
+                  <button
+                    type="button"
+                    @click="form.attending = 'no'; showError = false"
+                    :class="[
+                form.attending === 'no' ? 'bg-wedding-purple text-white shadow-lg scale-[1.02]' : 'bg-slate-50 text-slate-400',
+                showError ? 'border border-red-300 ring-2 ring-red-50' : 'border border-transparent']"
+                    class="flex-1 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all duration-300">
+                    {{ t.rsvp_form.presence_no }}
+                  </button>
+                </div>
+              </div>
+
+              <div
+                v-if="form.attending === 'yes'"
+                class="space-y-8 border-t border-slate-100 pt-8 animate-fade-in">
+                <div>
+                  <label
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-4">
+                    {{ t.rsvp_form.add_guest_label }}
+                  </label>
+
+                  <div class="space-y-4">
+                    <div
+                      v-for="(guest, index) in form.additionalGuests"
+                      :key="index"
+                      class="bg-slate-50 p-4 rounded-2xl border border-slate-100 relative animate-fade-in">
+                      <div class="flex flex-col gap-4">
+                        <input
+                          v-model.trim="guest.name"
+                          type="text"
+                          :placeholder="t.rsvp_form.guest_name_placeholder"
+                          class="bg-white border-b border-slate-200 px-3 py-2 outline-none focus:border-wedding-rose transition-all font-serif" />
+
+                        <div class="flex items-center justify-between">
+                          <label class="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              v-model="guest.isChild"
+                              class="accent-wedding-rose h-4 w-4" />
+                            <span
+                              class="text-xs font-bold text-wedding-navy uppercase tracking-tighter">
+                              {{ t.rsvp_form.is_child }}
+                              <!-- Chix vai como menino das alianças. -->
+                            </span>
+                          </label>
+                          <button
+                            type="button"
+                            @click="removeGuest(index)"
+                            class="text-[9px] uppercase font-black text-red-400 hover:text-red-600">
+                            {{ t.rsvp_form.remove_guest }}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      @click="addGuest"
+                      :disabled="form.additionalGuests.length >= 5"
+                      :class="[form.additionalGuests.length >= 5 ? 'opacity-30 cursor-not-allowed border-slate-100' 
+      : 'hover:border-wedding-rose hover:text-wedding-rose' ]"
+                      class="w-full py-3 border-2 border-dashed border-slate-200 rounded-2xl text-slate-400 text-[10px] font-black uppercase tracking-widest transition-all">
+                      {{ t.rsvp_form.add_guest_btn }}
+                    </button>
+                  </div>
+                </div>
+
+                <div>
+                  <label
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid block mb-3">
+                    {{ t.rsvp_form.dietary_label }}
+                  </label>
+                  <textarea
+                    maxlength="200"
+                    v-model="form.dietary"
+                    rows="2"
+                    class="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3 focus:border-wedding-rose outline-none transition-all text-base"
+                    :placeholder="t.rsvp_form.dietary_placeholder">
+                  </textarea>
+                  <p class="text-[9px] text-right text-slate-400">
+                    {{ form.dietary.length }}/200
+                  </p>
+                </div>
+              </div>
+
+              <transition
+                enter-active-class="transition duration-300 ease-out"
+                enter-from-class="transform -translate-y-2 opacity-0"
+                enter-to-class="transform translate-y-0 opacity-100"
+                leave-active-class="transition duration-200 ease-in"
+                leave-from-class="opacity-100"
+                leave-to-class="opacity-0">
+                <p
+                  v-if="showError"
+                  class="text-[10px] text-red-500 font-bold uppercase tracking-tighter text-center bg-red-50 py-2 rounded-lg border border-red-100">
+                  ⚠️ {{ errorMessage }}
+                </p>
+              </transition>
+
+              <button
+                type="submit"
+                :disabled="loading"
+                class="w-full relative py-5 rounded-2xl shadow-xl transition-all transform active:scale-95 text-[10px] font-black uppercase tracking-[0.3em] overflow-hidden"
+                :class="loading ? 'bg-slate-400 cursor-not-allowed' : 'bg-wedding-rose hover:bg-wedding-navy text-white'">
+                <span v-if="!loading"> {{ t.rsvp_form.submit_btn }} </span>
+
+                <div v-else class="flex items-center justify-center gap-2">
+                  <svg
+                    class="animate-spin h-4 w-4 text-white"
+                    fill="none"
+                    viewBox="0 0 24 24">
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span>{{ t.rsvp_form.sending }}</span>
+                </div>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section id="gifts" class="py-24 px-6 bg-white">
+        <!-- Normalmente dinheiros são com o CC, mas neste caso não é para ele.-->
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-4xl font-serif italic text-wedding-navy mb-6">
+            {{ t.gifts.title }}
+          </h2>
+          <p class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
+            {{ t.gifts.message }}
+          </p>
+
+          <div
+            class="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group">
+            <span
+              class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid mb-4 block opacity-60">
+              {{ t.gifts.iban_label }}
+            </span>
+
+            <p
+              class="text-xl md:text-2xl font-mono text-wedding-navy tracking-tighter mb-8 break-all">
+              {{ iban }}
+            </p>
+
+            <button
+              @click="copyIban"
+              class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose active:scale-95 shadow-lg shadow-wedding-navy/20">
+              <span v-if="!copyStatus">📋</span>
+              <span v-else>✨</span>
+              {{ copyStatus ? t.gifts.copied : t.gifts.copy_btn }}
+            </button>
+
+            <div
+              class="absolute -top-6 -right-6 w-24 h-24 bg-wedding-rose/5 rounded-full blur-2xl group-hover:bg-wedding-rose/10 transition-colors"></div>
+          </div>
+
+          <p
+            class="mt-8 text-[10px] font-medium uppercase tracking-widest text-wedding-purple">
+            {{ t.gifts.bertrand_note }}
+            <!-- Já o Teca preferia Steam cards, mas pronto. -->
+          </p>
+        </div>
+      </section>
+
+      <section id="location" class="py-24 px-6 bg-slate-50">
+        <div class="max-w-5xl mx-auto">
+          <div class="text-center mb-20">
+            <h2 class="text-5xl font-serif italic text-wedding-navy mb-4">
+              {{ t.location.section_title }}
+            </h2>
+            <div class="w-16 h-0.5 bg-wedding-rose/30 mx-auto"></div>
+          </div>
+
+          <div class="space-y-32">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+              <div
+                class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square w-full max-w-[400px]">
+                <img
+                  src="images/ArquivoDentro.webp"
+                  :alt="t.location.ceremony_venue"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div
+                  class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-navy">
+                    {{ t.location.ceremony_tag }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="w-full md:w-1/2 text-center md:text-left">
+                <h3
+                  class="text-xl font-bold uppercase tracking-widest text-wedding-rose mb-4">
+                  {{ t.location.ceremony_venue }}
+                </h3>
+                <p class="text-slate-500 font-light leading-relaxed mb-6">
+                  {{ t.location.ceremony_description }}
+                </p>
+                <p class="text-wedding-navy font-mono text-sm mb-8">
+                  {{ t.location.ceremony_address }}
+                </p>
+                <div
+                  class="flex flex-col sm:flex-row justify-center md:justify-start gap-3 mt-8">
+                  <a
+                    :href="t.location.ceremony_maps_link"
+                    target="_blank"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-wedding-navy text-white px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
+                    <svg
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    {{ t.location.cta_maps }}
+                  </a>
+
+                  <button
+                    @click="copyAddress(t.location.ceremony_address, 'ceremony')"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center bg-white border-2 border-wedding-navy/10 text-wedding-navy px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-slate-50 active:scale-95 min-w-[140px]">
+                    <span
+                      :class="copied === 'ceremony' ? 'text-green-600' : ''">
+                      {{ copyAddressStatus === 'ceremony' ?
+                      t.location.cta_copied : t.location.cta_copy }}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row-reverse items-center gap-12">
+              <div
+                class="w-full md:w-1/2 relative group overflow-hidden rounded-[2.5rem] shadow-2xl aspect-square w-full max-w-[400px]">
+                <img
+                  src="images/MosteiroFora.webp"
+                  :alt="t.location.reception_venue"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div
+                  class="absolute top-6 right-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full shadow-sm">
+                  <span
+                    class="text-[10px] font-black uppercase tracking-widest text-wedding-navy">
+                    {{ t.location.reception_tag }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="w-full md:w-1/2 text-center md:text-right">
+                <h3
+                  class="text-xl font-bold uppercase tracking-widest text-wedding-rose mb-4">
+                  {{ t.location.reception_venue }}
+                </h3>
+                <p class="text-slate-500 font-light leading-relaxed mb-6">
+                  {{ t.location.reception_description }}
+                </p>
+                <p class="text-wedding-navy font-mono text-sm mb-8">
+                  {{ t.location.reception_address }}
+                </p>
+                <div
+                  class="flex flex-col sm:flex-row justify-center md:justify-start gap-3 mt-8">
+                  <a
+                    :href="t.location.reception_maps_link"
+                    target="_blank"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-wedding-navy text-white px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-wedding-rose shadow-lg active:scale-95">
+                    <svg
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24">
+                      <path
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                    {{ t.location.cta_maps }}
+                  </a>
+
+                  <button
+                    @click="copyAddress(t.location.reception_address, 'reception')"
+                    class="flex-1 sm:flex-none inline-flex items-center justify-center bg-white border-2 border-wedding-navy/10 text-wedding-navy px-8 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest transition-all hover:bg-slate-50 active:scale-95 min-w-[140px]">
+                    <span
+                      :class="copied === 'reception' ? 'text-green-600' : ''">
+                      {{ copyAddressStatus === 'reception' ?
+                      t.location.cta_copied : t.location.cta_copy }}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="py-12 text-center border-t border-slate-100">
+        <div class="mb-2 flex justify-center">
+          <img
+            src="images/Main.webp"
+            alt="Wedding Decoration"
+            class="w-48 h-auto opacity-80" />
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-3xl font-serif italic text-wedding-navy mb-2">
+            {{ t.footer.thanks }}
+          </h3>
+          <!--Não se agradece!-->
+
+          <div class="w-8 h-px bg-wedding-rose/30 mx-auto"></div>
+        </div>
+
+        <p class="font-serif italic text-2xl text-wedding-purple mb-4">C & D</p>
+        <p
+          class="text-[10px] font-black uppercase tracking-[0.5em] text-wedding-purple">
+          21.02.2027
+        </p>
+      </footer>
+    </div>
+
+    <script type="module">
+      import { en } from "./locales/en.js";
+      import { pt } from "./locales/pt.js";
+      const { createApp, ref, computed } = Vue;
+
+      createApp({
+        setup() {
+          const content = { en, pt };
+          const t = computed(() => content[lang.value]);
+
+          const lang = ref("pt");
+          const toggleLang = () => {
+            lang.value = lang.value === "en" ? "pt" : "en";
+          };
+
+          const isMenuOpen = ref(false);
+          const toggleMenu = () => {
+            isMenuOpen.value = !isMenuOpen.value;
+          };
+
+          const submitted = ref(false);
+          const loading = ref(false);
+          const showError = ref(false);
+          const errorMessage = ref("");
+
+          const form = ref({
+            name: "",
+            attending: null,
+            dietary: "",
+            additionalGuests: [],
+          });
+
+          const addGuest = () => {
+            const GUESTS_LIMIT = 5;
+            if (form.value.additionalGuests.length < GUESTS_LIMIT) {
+              form.value.additionalGuests.push({ name: "", isChild: false });
+              showError.value = false;
+              errorMessage.value = "";
+            } else {
+              errorMessage.value = t.value.rsvp_form.limit_reached;
+              showError.value = true;
+              setTimeout(() => {
+                showError.value = false;
+              }, 3000);
+            }
+          };
+
+          const removeGuest = (index) => {
+            form.value.additionalGuests.splice(index, 1);
+          };
+
+          const submitForm = async () => {
+            console.log("Connecting to Google Sheets...");
+
+            if (!form.value.name || form.value.name.trim().length === 0) {
+              errorMessage.value = t.value.rsvp_form.name_error;
+              showError.value = true;
+              return;
+            }
+
+            if (!form.value.attending) {
+              errorMessage.value = t.value.rsvp_form.presence_error;
+              showError.value = true;
+              return;
+            }
+
+            if (form.value.attending === "no") {
+              form.value.additionalGuests = [];
+              form.value.dietary = "";
+            } else {
+              const hasInvalidGuest = form.value.additionalGuests.some(
+                (g) => !g.name || g.name.trim().length === 0,
+              );
+              if (hasInvalidGuest) {
+                errorMessage.value = t.value.rsvp_form.guest_name_error;
+                showError.value = true;
+                return;
+              }
+            }
+
+            showError.value = false;
+            loading.value = true;
+
+            try {
+              await fetch(
+                "https://script.google.com/macros/s/AKfycbxBf6wD7-Poa8eSh3v1zXzpL6MG0FNb__aEYA848XFPJnYweuAXP_wqCyPDeIzEVwku/exec",
+                {
+                  method: "POST",
+                  mode: "no-cors",
+                  headers: {
+                    // Use text/plain to play nice with 'no-cors'
+                    "Content-Type": "text/plain;charset=utf-8",
+                  },
+                  body: JSON.stringify(form.value),
+                },
+              );
+
+              await new Promise((resolve) => setTimeout(resolve, 1500));
+
+              // Assumption of success due to no-cors limitations
+              submitted.value = true;
+
+              const rsvpSection = document.getElementById("rsvp");
+              if (rsvpSection) {
+                rsvpSection.scrollIntoView({ behavior: "smooth" });
+              }
+            } catch (error) {
+              console.error("Submission error:", error);
+              alert(t.value.rsvp_form.error_msg || "Error");
+            } finally {
+              loading.value = false;
+            }
+          };
+
+          const iban = "PT50 0018 0003 6645 7649 0206 7";
+          const copyIbanStatus = ref(false);
+          const copyIban = () => {
+            navigator.clipboard.writeText(iban).then(() => {
+              copyIbanStatus.value = true;
+              setTimeout(() => {
+                copyIbanStatus.value = false;
+              }, 2000);
+            });
+          };
+
+          const copyAddressStatus = ref("");
+          const copyAddress = (address, key) => {
+            navigator.clipboard
+              .writeText(address)
+              .then(() => {
+                copied.value = key;
+                // Volta ao texto original após 2 segundos
+                setTimeout(() => {
+                  copied.value = "";
+                }, 2000);
+              })
+              .catch((err) => {
+                console.error("Erro ao copiar: ", err);
+              });
+          };
+          return {
+            lang,
+            t,
+            toggleLang,
+            form,
+            addGuest,
+            removeGuest,
+            submitted,
+            loading,
+            showError,
+            errorMessage,
+            submitForm,
+            isMenuOpen,
+            toggleMenu,
+            iban,
+            copyIbanStatus,
+            copyIban,
+            copyAddressStatus,
+            copyAddress,
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
 </html>
+
+<!--  
+Para Futuro: 
+- Adicionar Contactos
+
+- Gerar QR Code
+-->
