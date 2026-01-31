@@ -97,7 +97,6 @@ export const en = {
     bertrand_note: "Note: for Carolina Bertrand gift vouchers are also welcome",
   },
   location: {
-    section_title: "Localização",
     ceremony_tag: "Ceremony",
     ceremony_venue: "Arquivo Distrital do Porto",
     ceremony_description:
@@ -112,7 +111,7 @@ export const en = {
     reception_address: "Rua de São Bento da Vitória 45, 4050-542 Porto",
     reception_maps_link: "https://maps.app.goo.gl/BRjvQ6emUcboJLu39",
 
-    cta_maps: "Abrir no Google Maps",
+    cta_maps: "Open in Google Maps",
     cta_copy: "Copy Address",
     cta_copied: "Copied!",
   },
