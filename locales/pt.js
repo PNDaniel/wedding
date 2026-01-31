@@ -98,7 +98,6 @@ export const pt = {
       "Nota: para a Carolina cheques-prenda da Bertrand também são bem-vindos.",
   },
   location: {
-    section_title: "Localização",
     ceremony_tag: "A Cerimónia",
     ceremony_venue: "Arquivo Distrital do Porto",
     ceremony_description:
