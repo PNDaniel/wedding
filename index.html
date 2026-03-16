@@ -446,7 +446,63 @@
                           :placeholder="t.rsvp_form.guest_name_placeholder"
                           class="bg-white border-b border-slate-200 px-3 py-2 outline-none focus:border-wedding-rose transition-all font-serif" />
 
-                        <div class="flex items-center justify-between">
+                        <div class="flex flex-col gap-2">
+                          <span
+                            class="text-[9px] font-black uppercase tracking-widest text-slate-400 ml-1">
+                            Tipo de Convidado
+                          </span>
+                          <div class="flex gap-2 items-stretch">
+                            <label class="flex-1">
+                              <input
+                                type="radio"
+                                v-model="guest.type"
+                                value="adult"
+                                class="hidden peer" />
+                              <div
+                                class="flex flex-col items-center justify-center h-full min-h-[45px] p-2 rounded-xl border border-slate-200 text-[10px] font-bold uppercase cursor-pointer transition-all peer-checked:bg-wedding-navy peer-checked:text-white peer-checked:border-wedding-navy">
+                                <span>Adulto</span>
+                                <span
+                                  class="block text-[8px] opacity-0 select-none"
+                                  >invisible</span
+                                >
+                              </div>
+                            </label>
+                            <!-- Chix vai ser o menino das alianças.  -->
+                            <label class="flex-1">
+                              <input
+                                type="radio"
+                                v-model="guest.type"
+                                value="child"
+                                class="hidden peer" />
+                              <div
+                                class="flex flex-col items-center justify-center h-full min-h-[45px] p-2 rounded-xl border border-slate-200 text-[10px] font-bold uppercase cursor-pointer transition-all peer-checked:bg-wedding-purple peer-checked:text-white peer-checked:border-wedding-rose">
+                                <span>Criança</span>
+                                <span
+                                  class="block text-[8px] opacity-70 leading-none"
+                                  >(3-12a)</span
+                                >
+                              </div>
+                            </label>
+
+                            <label class="flex-1">
+                              <input
+                                type="radio"
+                                v-model="guest.type"
+                                value="baby"
+                                class="hidden peer" />
+                              <div
+                                class="flex flex-col items-center justify-center h-full min-h-[45px] p-2 rounded-xl border border-slate-200 text-[10px] font-bold uppercase cursor-pointer transition-all peer-checked:bg-wedding-rose peer-checked:text-white peer-checked:border-wedding-purple">
+                                <span>Bebé</span>
+                                <span
+                                  class="block text-[8px] opacity-70 leading-none"
+                                  >(0-3a)</span
+                                >
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+
+                        <!-- <div class="flex items-center justify-between">
                           <label class="flex items-center gap-2 cursor-pointer">
                             <input
                               type="checkbox"
@@ -454,8 +510,7 @@
                               class="accent-wedding-rose h-4 w-4" />
                             <span
                               class="text-xs font-bold text-wedding-navy uppercase tracking-tighter">
-                              {{ t.rsvp_form.is_child }}
-                              <!-- Chix vai como menino das alianças. -->
+                              {{ t.rsvp_form.is_child }}                            
                             </span>
                           </label>
                           <button
@@ -464,7 +519,7 @@
                             class="text-[9px] uppercase font-black text-red-400 hover:text-red-600">
                             {{ t.rsvp_form.remove_guest }}
                           </button>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
 
@@ -488,7 +543,7 @@
                   <textarea
                     maxlength="200"
                     v-model="form.dietary"
-                    rows="2"
+                    rows="3"
                     class="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3 focus:border-wedding-rose outline-none transition-all text-base"
                     :placeholder="t.rsvp_form.dietary_placeholder">
                   </textarea>
@@ -582,6 +637,25 @@
             class="mt-8 text-[10px] font-medium uppercase tracking-widest text-wedding-purple">
             {{ t.gifts.bertrand_note }}
             <!-- Já o Teca preferia Steam cards, mas pronto. -->
+          </p>
+        </div>
+      </section>
+
+      <section id="info" class="py-24 px-6 bg-white">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-4xl font-serif italic text-wedding-purple mb-6">
+            {{ t.info.title }}
+          </h2>
+          <p class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
+            {{ t.info.dress_code }}
+          </p>
+
+          <p class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
+            {{ t.info.babysitting }}
+          </p>
+
+          <p class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
+            {{ t.info.parking }}
           </p>
         </div>
       </section>
@@ -728,7 +802,18 @@
           <div class="w-8 h-px bg-wedding-rose/30 mx-auto"></div>
         </div>
 
-        <p class="font-serif italic text-2xl text-wedding-purple mb-4">C & D</p>
+        <!-- <p class="font-serif italic text-2xl text-wedding-purple mb-4">C & D</p> -->
+        <img
+          src="images/monograma_blue.webp"
+          alt="C & D"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+          class="h-16 w-auto mx-auto" />
+        <p class="hidden font-serif italic text-2xl text-wedding-purple mb-4">
+          C & D
+        </p>
         <p
           class="text-[10px] font-black uppercase tracking-[0.5em] text-wedding-purple">
           21.02.2027
@@ -771,7 +856,11 @@
           const addGuest = () => {
             const GUESTS_LIMIT = 5;
             if (form.value.additionalGuests.length < GUESTS_LIMIT) {
-              form.value.additionalGuests.push({ name: "", isChild: false });
+              form.value.additionalGuests.push({
+                name: "",
+                type: "adult",
+                isChild: false,
+              });
               showError.value = false;
               errorMessage.value = "";
             } else {
@@ -821,7 +910,7 @@
 
             try {
               await fetch(
-                "https://script.google.com/macros/s/AKfycbxBf6wD7-Poa8eSh3v1zXzpL6MG0FNb__aEYA848XFPJnYweuAXP_wqCyPDeIzEVwku/exec",
+                "https://script.google.com/macros/s/AKfycbw9i7VL5-dHFavW_Q0eA4nbiWhVyGbbaK5Wi7ceDLJ1ot9vjIAUsSzuk3GcnUeOLCBW/exec",
                 {
                   method: "POST",
                   mode: "no-cors",
