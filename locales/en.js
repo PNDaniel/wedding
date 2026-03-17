@@ -5,6 +5,7 @@ export const en = {
     lineup: "Lineup",
     rsvp: "RSVP",
     gifts: "Gifts",
+    info: "Information",
     location: "Location",
   },
   home: {
@@ -79,10 +80,15 @@ export const en = {
     add_guest_label: "Bringing guests?",
     add_guest_btn: "+ Add",
     guest_name_placeholder: "I'm also bringing...",
-    is_child: "Child? (3-12 years old)",
-    child_note: "Note: Children under 3 do not require a formal seat.",
+    adult: "Adult",
+    child: "Child",
+    baby: "Baby",
+    age_child: "(3-12)",
+    age_baby: "(0-3)",
     remove_guest: "Remove",
     name_error: "Please, fill out your name.",
+    change_something:
+      "In case you need toCaso precises de alterar algo, por favor contacta-nos diretamente para o 911234567 ou este email@email.",
     presence_error: "Confirm if you can attend.",
     guest_name_error: "Please, fill the name of all companions",
     limit_reached: "Maximum limit of 6 guests reached.",
@@ -98,7 +104,12 @@ export const en = {
   },
   info: {
     title: "Information",
-    dress_code: "Formal Dress code",
+    subtitle: "Some informations to help you prepare the day",
+    dress_code:
+      "Formal Dress code, bring out your cute and pretty dresses and suits!",
+    dress_code_formal: "Dress code: formal",
+    indoor:
+      "The whole day will be spent under a roof, neither rain or cold will stop us.",
     babysitting:
       "There will be a babysitting room as well as a supervised child playground.",
     parking: "Several parking lots in the area.",

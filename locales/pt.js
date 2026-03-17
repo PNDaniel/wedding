@@ -5,6 +5,7 @@ export const pt = {
     lineup: "Alinhamento",
     rsvp: "Confirmação",
     gifts: "Presentes",
+    info: "Informações",
     location: "Localização",
   },
   home: {
@@ -81,11 +82,14 @@ export const pt = {
     add_guest_btn: "+ Adicionar",
     guest_name_placeholder: "Também levo...",
     adult: "Adulto",
-    child: "",
-    baby: "",
-    child_note: "Nota: São consideras crianças até aos 8 anos.",
+    child: "Criança",
+    baby: "Bebé",
+    age_child: "(3-12)",
+    age_baby: "(0-3)",
     remove_guest: "Remover",
     name_error: "Identifica-te!.",
+    change_something:
+      "Caso precises de alterar algo, por favor contacta-nos diretamente para o 911234567 ou este email@email.",
     presence_error: "Confirme se poderá estar presente.",
     guest_name_error: "Por favor, preenche o nome de todos os acompanhantes.",
     limit_reached: "Limite máximo de 5 acompanhantes atingido.",
@@ -102,7 +106,12 @@ export const pt = {
   },
   info: {
     title: "Informações",
-    dress_code: "O Dress code é formal",
+    subtitle:
+      "Algumas considerações e informações para vos ajudar a preparar o dia",
+    dress_code: "Estão a ver aquele vestido ou fato mesmo bonito? Tragam-nos!",
+    dress_code_formal: "Dress code: formal",
+    indoor:
+      "O dia inteiro será passado debaixo de telha, a chuva nem o frio serão um incómodo.",
     babysitting:
       "Vai haver sala de babysitting e animação supervisonada para crianças.",
     parking: "Há vários parques de estacionamento na zona.",
