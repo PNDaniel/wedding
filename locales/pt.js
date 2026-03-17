@@ -5,6 +5,7 @@ export const pt = {
     lineup: "Alinhamento",
     rsvp: "Confirmação",
     gifts: "Presentes",
+    info: "Informações",
     location: "Localização",
   },
   home: {
@@ -21,25 +22,25 @@ export const pt = {
   },
   lineup: [
     {
-      time: "15:00",
+      time: "14:30",
       icon: "images/Stage1.webp",
       title: "Cerimónia",
       extra: "Vai ser muito bonito",
     },
     {
-      time: "16:30",
+      time: "15:30",
       icon: "images/Stage2.webp",
       title: "Copo de água",
       extra: "Sim, vai haver sushi",
     },
     {
-      time: "18:30",
+      time: "18:00",
       icon: "images/Stage3.webp",
       title: "Jantar",
       extra: "Para quem tiver espaço",
     },
     {
-      time: "21:00",
+      time: "20:30",
       icon: "images/Stage4.webp",
       title: "Cenas",
       extra: "",
@@ -51,13 +52,13 @@ export const pt = {
       extra: "Vai ter chocolate",
     },
     {
-      time: "00:00",
+      time: "22:00",
       icon: "images/Stage6.webp",
       title: "Festa",
       extra: "A Carolina vai dançar",
     },
     {
-      time: "02:00",
+      time: "00:30",
       icon: "images/Stage7.webp",
       title: "Fim da Festa",
       extra: "O Daniel vai dormir, vocês fazem o que quiserem",
@@ -69,20 +70,26 @@ export const pt = {
     success_title: "Confirmado!",
     success_msg: "A sua resposta foi enviada. Mal podemos esperar!",
     name_label: "Nome",
-    name_placeholder: "Ex: Carolina & Daniel",
+    name_placeholder: "Ex: Carolina Moreira",
     presence_label: "Confirmas a tua presença?",
     presence_yes: "Sim, aceito!",
     presence_no: "Infelizmente não",
-    dietary_label: "Restrições Alimentares",
-    dietary_placeholder: "Alergias, vegetariano, etc...",
+    dietary_label: "Restrições e Necessidades",
+    dietary_placeholder:
+      "Escreve aqui o que for relevante a alergias, restrições alimentares, \ndificuldades de movimentação, necessidades com crianças e bebés, etc",
     submit_btn: "Enviar Resposta",
     add_guest_label: "Levo acompanhantes?",
     add_guest_btn: "+ Adicionar",
     guest_name_placeholder: "Também levo...",
-    is_child: "É criança?",
-    child_note: "Nota: São consideras crianças até aos 8 anos.",
+    adult: "Adulto",
+    child: "Criança",
+    baby: "Bebé",
+    age_child: "(3-12)",
+    age_baby: "(0-3)",
     remove_guest: "Remover",
     name_error: "Identifica-te!.",
+    change_something:
+      "Caso precises de alterar algo, por favor contacta-nos diretamente para o 911234567 ou este email@email.",
     presence_error: "Confirme se poderá estar presente.",
     guest_name_error: "Por favor, preenche o nome de todos os acompanhantes.",
     limit_reached: "Limite máximo de 5 acompanhantes atingido.",
@@ -96,6 +103,18 @@ export const pt = {
     copied: "Copiado!",
     bertrand_note:
       "Nota: para a Carolina cheques-prenda da Bertrand também são bem-vindos.",
+  },
+  info: {
+    title: "Informações",
+    subtitle:
+      "Algumas considerações e informações para vos ajudar a preparar o dia",
+    dress_code: "Estão a ver aquele vestido ou fato mesmo bonito? Tragam-nos!",
+    dress_code_formal: "Dress code: formal",
+    indoor:
+      "O dia inteiro será passado debaixo de telha, a chuva nem o frio serão um incómodo.",
+    babysitting:
+      "Vai haver sala de babysitting e animação supervisonada para crianças.",
+    parking: "Há vários parques de estacionamento na zona.",
   },
   location: {
     ceremony_tag: "A Cerimónia",

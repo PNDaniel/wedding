@@ -236,7 +236,7 @@
                 class="text-wedding-rose font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">
                 {{ t.edict.subtitle }}
                 <!-- 
-                  Portus, 20 Januarius MMXXVI
+                  Portus, 17 Marcius MMXXVI
                   Karateca
                   Beigustus
                   Teresa
@@ -265,10 +265,18 @@
 
             <div
               class="absolute -bottom-6 right-10 w-16 h-16 bg-wedding-rose rounded-full shadow-lg flex items-center justify-center border-4 border-wedding-rose/50 transform rotate-12">
+              <img
+                src="images/monograma_purple_full.webp"
+                alt="Monograma C&D"
+                class="w-10 h-10 object-contain select-none" />
+            </div>
+
+            <!-- <div
+              class="absolute -bottom-6 right-10 w-16 h-16 bg-wedding-rose rounded-full shadow-lg flex items-center justify-center border-4 border-wedding-rose/50 transform rotate-12">
               <span class="text-white font-serif italic text-xl select-none"
                 >C&D</span
               >
-            </div>
+            </div> -->
           </div>
 
           <div
@@ -370,16 +378,97 @@
           </div>
 
           <div class="p-8 md:p-12">
-            <div v-if="submitted" class="text-center py-12 animate-fade-in">
+            <div v-if="submitted" class="text-center py-4 animate-fade-in">
               <div
                 class="inline-flex items-center justify-center w-20 h-20 bg-wedding-rose/10 rounded-full mb-6">
                 <span class="text-4xl">✨</span>
               </div>
-              <h3 class="text-3xl font-serif text-wedding-navy mb-4">
+
+              <h3 class="text-3xl font-serif text-wedding-navy mb-2">
                 {{ t.rsvp_form.success_title }}
               </h3>
-              <p class="text-slate-500 font-light leading-relaxed">
+              <p class="text-slate-500 font-light leading-relaxed mb-8">
                 {{ t.rsvp_form.success_msg }}
+              </p>
+
+              <div
+                class="bg-slate-50 rounded-[2rem] p-6 md:p-8 border border-slate-100 shadow-sm text-left">
+                <h4
+                  class="text-[10px] font-black uppercase tracking-[0.2em] text-wedding-blue-mid mb-6 border-b border-slate-200 pb-2">
+                  Resumo do Registo
+                </h4>
+
+                <div class="space-y-4">
+                  <div class="flex justify-between items-center">
+                    <span
+                      class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter"
+                      >Convidado</span
+                    >
+                    <span
+                      class="text-sm font-serif italic text-wedding-navy text-lg"
+                      >{{ form.name }}</span
+                    >
+                  </div>
+
+                  <div class="flex justify-between items-center pt-2">
+                    <span
+                      class="text-[10px] text-slate-400 uppercase font-bold tracking-tighter"
+                      >Presença</span
+                    >
+                    <span
+                      :class="form.attending === 'yes' ? 'text-wedding-navy' : 'text-wedding-purple'"
+                      class="text-xs font-bold uppercase tracking-widest">
+                      {{ form.attending === 'yes' ? t.rsvp_form.presence_yes :
+                      t.rsvp_form.presence_no }}
+                    </span>
+                  </div>
+
+                  <div
+                    v-if="form.attending === 'yes' && form.additionalGuests.length > 0"
+                    class="pt-4 border-t border-slate-200/60">
+                    <span
+                      class="text-[10px] text-slate-400 uppercase font-bold block mb-3"
+                      >Acompanhantes</span
+                    >
+                    <ul class="space-y-2">
+                      <li
+                        v-for="guest in form.additionalGuests"
+                        :key="guest.name"
+                        class="flex justify-between items-center bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                        <span class="text-sm font-medium text-slate-700"
+                          >{{ guest.name }}</span
+                        >
+                        <span
+                          class="text-[9px] font-black uppercase px-2 py-1 rounded-md"
+                          :class="{
+                    'bg-wedding-navy/5 text-wedding-navy': guest.type === 'adult',
+                    'bg-wedding-purple/5 text-wedding-purple': guest.type === 'child',
+                    'bg-wedding-rose/5 text-wedding-rose': guest.type === 'baby'
+                  }">
+                          {{ guest.type === 'baby' ? t.rsvp_form.baby :
+                          (guest.type === 'child' ? t.rsvp_form.child :
+                          t.rsvp_form.adult) }}
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div
+                    v-if="form.dietary"
+                    class="pt-4 border-t border-slate-200/60">
+                    <span
+                      class="text-[10px] text-slate-400 uppercase font-bold block mb-1"
+                      >Observações</span
+                    >
+                    <p class="text-sm italic text-slate-600 leading-relaxed">
+                      "{{ form.dietary }}"
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <p class="mt-8 text-[10px] text-slate-400 font-medium italic">
+                {{ t.rsvp_form.change_something }}
               </p>
             </div>
 
@@ -446,24 +535,60 @@
                           :placeholder="t.rsvp_form.guest_name_placeholder"
                           class="bg-white border-b border-slate-200 px-3 py-2 outline-none focus:border-wedding-rose transition-all font-serif" />
 
-                        <div class="flex items-center justify-between">
-                          <label class="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="checkbox"
-                              v-model="guest.isChild"
-                              class="accent-wedding-rose h-4 w-4" />
-                            <span
-                              class="text-xs font-bold text-wedding-navy uppercase tracking-tighter">
-                              {{ t.rsvp_form.is_child }}
-                              <!-- Chix vai como menino das alianças. -->
-                            </span>
-                          </label>
-                          <button
-                            type="button"
-                            @click="removeGuest(index)"
-                            class="text-[9px] uppercase font-black text-red-400 hover:text-red-600">
-                            {{ t.rsvp_form.remove_guest }}
-                          </button>
+                        <div class="flex flex-col gap-2">
+                          <span
+                            class="text-[9px] font-black uppercase tracking-widest text-slate-400 ml-1">
+                            Tipo de Convidado
+                          </span>
+                          <div class="flex gap-2 items-stretch">
+                            <label class="flex-1">
+                              <input
+                                type="radio"
+                                v-model="guest.type"
+                                value="adult"
+                                class="hidden peer" />
+                              <div
+                                class="flex flex-col items-center justify-center h-full min-h-[45px] p-2 rounded-xl border border-slate-200 text-[10px] font-bold uppercase cursor-pointer transition-all peer-checked:bg-wedding-navy peer-checked:text-white peer-checked:border-wedding-navy relative">
+                                <span>{{ t.rsvp_form.adult }}</span>
+                                <span
+                                  class="block text-[8px] opacity-0 select-none leading-none absolute bottom-2">
+                                  invisible
+                                </span>
+                              </div>
+                            </label>
+                            <!-- Chix vai ser o menino das alianças.  -->
+                            <label class="flex-1">
+                              <input
+                                type="radio"
+                                v-model="guest.type"
+                                value="child"
+                                class="hidden peer" />
+                              <div
+                                class="flex flex-col items-center justify-center h-full min-h-[45px] p-2 rounded-xl border border-slate-200 text-[10px] font-bold uppercase cursor-pointer transition-all peer-checked:bg-wedding-purple peer-checked:text-white peer-checked:border-wedding-rose">
+                                <span>{{ t.rsvp_form.child }}</span>
+                                <span
+                                  class="block text-[8px] opacity-70 leading-none"
+                                  >{{ t.rsvp_form.age_child }}</span
+                                >
+                              </div>
+                            </label>
+
+                            <label class="flex-1">
+                              <input
+                                type="radio"
+                                v-model="guest.type"
+                                value="baby"
+                                class="hidden peer" />
+                              <div
+                                class="flex flex-col items-center justify-center h-full min-h-[45px] p-2 rounded-xl border border-slate-200 text-[10px] font-bold uppercase cursor-pointer transition-all peer-checked:bg-wedding-rose peer-checked:text-white peer-checked:border-wedding-purple">
+                                <span>{{ t.rsvp_form.baby }}</span>
+                                <span
+                                  class="block text-[8px] opacity-70 leading-none"
+                                  >{{ t.rsvp_form.age_baby }}</span
+                                >
+                              </div>
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -488,7 +613,7 @@
                   <textarea
                     maxlength="200"
                     v-model="form.dietary"
-                    rows="2"
+                    rows="3"
                     class="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-4 py-3 focus:border-wedding-rose outline-none transition-all text-base"
                     :placeholder="t.rsvp_form.dietary_placeholder">
                   </textarea>
@@ -545,7 +670,7 @@
       </section>
 
       <section id="gifts" class="py-24 px-6 bg-white">
-        <!-- Normalmente dinheiros são com o CC, mas neste caso não é para ele.-->
+        <!-- Normalmente dinheiros seriam com o CC, mas neste caso não é para ele.-->
         <div class="max-w-2xl mx-auto text-center">
           <h2 class="text-4xl font-serif italic text-wedding-navy mb-6">
             {{ t.gifts.title }}
@@ -579,10 +704,50 @@
           </div>
 
           <p
-            class="mt-8 text-[10px] font-medium uppercase tracking-widest text-wedding-purple">
+            class="mt-8 text-[10px] font-medium tracking-widest text-wedding-purple">
             {{ t.gifts.bertrand_note }}
             <!-- Já o Teca preferia Steam cards, mas pronto. -->
           </p>
+        </div>
+      </section>
+
+      <section id="info" class="py-24 px-6 bg-white">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-4xl font-serif italic text-wedding-purple mb-6">
+            {{ t.info.title }}
+          </h2>
+
+          <p
+            class="text-[10px] font-black uppercase tracking-[0.2em] text-wedding-blue-mid mb-4 opacity-70">
+            {{ t.info.subtitle }}
+          </p>
+
+          <div
+            class="bg-slate-50 p-8 md:p-10 rounded-[2.5rem] border border-slate-100 shadow-sm">
+            <div class="mb-8">
+              <p class="text-slate-500 font-light italic leading-relaxed px-4">
+                {{ t.info.dress_code }}
+              </p>
+              <span
+                class="block text-[11px] font-light italic tracking-wider text-wedding-rose">
+                {{ t.info.dress_code_formal }}
+              </span>
+            </div>
+
+            <p
+              class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
+              {{ t.info.indoor }}
+            </p>
+
+            <p
+              class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
+              {{ t.info.babysitting }}
+            </p>
+
+            <p class="text-slate-500 font-light italic leading-relaxed px-4">
+              {{ t.info.parking }}
+            </p>
+          </div>
         </div>
       </section>
 
@@ -728,7 +893,18 @@
           <div class="w-8 h-px bg-wedding-rose/30 mx-auto"></div>
         </div>
 
-        <p class="font-serif italic text-2xl text-wedding-purple mb-4">C & D</p>
+        <!-- <p class="font-serif italic text-2xl text-wedding-purple mb-4">C & D</p> -->
+        <img
+          src="images/monograma_blue.webp"
+          alt="C & D"
+          onerror="
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'block';
+          "
+          class="h-16 w-auto mx-auto" />
+        <p class="hidden font-serif italic text-2xl text-wedding-purple mb-4">
+          C & D
+        </p>
         <p
           class="text-[10px] font-black uppercase tracking-[0.5em] text-wedding-purple">
           21.02.2027
@@ -771,7 +947,11 @@
           const addGuest = () => {
             const GUESTS_LIMIT = 5;
             if (form.value.additionalGuests.length < GUESTS_LIMIT) {
-              form.value.additionalGuests.push({ name: "", isChild: false });
+              form.value.additionalGuests.push({
+                name: "",
+                type: "adult",
+                isChild: false,
+              });
               showError.value = false;
               errorMessage.value = "";
             } else {
@@ -821,7 +1001,7 @@
 
             try {
               await fetch(
-                "https://script.google.com/macros/s/AKfycbxBf6wD7-Poa8eSh3v1zXzpL6MG0FNb__aEYA848XFPJnYweuAXP_wqCyPDeIzEVwku/exec",
+                "https://script.google.com/macros/s/AKfycbw9i7VL5-dHFavW_Q0eA4nbiWhVyGbbaK5Wi7ceDLJ1ot9vjIAUsSzuk3GcnUeOLCBW/exec",
                 {
                   method: "POST",
                   mode: "no-cors",
