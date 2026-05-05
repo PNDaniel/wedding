@@ -93,7 +93,8 @@ export const pt = {
     add_to_calendar: "Adicionar ao Calendário",
     calendar_title: "Casamento Carolina & Daniel",
     calendar_details: "Mal podemos esperar por celebrar convosco!",
-    location_name: "Arquivo Distrital do Porto",
+    location_name:
+      "Arquivo Distrital do Porto, Rua das Taipas 90, 4050-598 Porto",
     presence_error: "Confirme se poderá estar presente.",
     guest_name_error: "Por favor, preenche o nome de todos os acompanhantes.",
     limit_reached: "Limite máximo de 5 acompanhantes atingido.",
