@@ -65,10 +65,10 @@ export const pt = {
     },
   ],
   rsvp_form: {
-    deadline: "Pedimos a vossa confirmação até dia 31 de Outubro de 2026!",
+    deadline: "Pedimos confirmação até dia 31 de Outubro de 2026!",
     presence_error: "Falta confirmar a presença!",
     success_title: "Confirmado!",
-    success_msg: "A sua resposta foi enviada. Mal podemos esperar!",
+    success_msg: "A resposta foi enviada. Mal podemos esperar!",
     name_label: "Nome",
     name_placeholder: "Ex: Carolina Moreira",
     presence_label: "Confirmas a tua presença?",
@@ -90,6 +90,10 @@ export const pt = {
     name_error: "Identifica-te!.",
     change_something:
       "Caso precises de alterar algo, por favor contacta-nos diretamente!",
+    add_to_calendar: "Adicionar ao Calendário",
+    calendar_title: "Casamento Carolina & Daniel",
+    calendar_details: "Mal podemos esperar por celebrar convosco!",
+    location_name: "Arquivo Distrital do Porto",
     presence_error: "Confirme se poderá estar presente.",
     guest_name_error: "Por favor, preenche o nome de todos os acompanhantes.",
     limit_reached: "Limite máximo de 5 acompanhantes atingido.",

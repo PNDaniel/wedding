@@ -89,6 +89,10 @@ export const en = {
     name_error: "Please, fill out your name.",
     change_something:
       "In case you need to change something please contact us directely!",
+    add_to_calendar: "Add to Calendar",
+    calendar_title: "Carolina & Daniel's Wedding",
+    calendar_details: "We can't wait to celebrate with you!",
+    location_name: "Arquivo Distrital do Porto",
     presence_error: "Confirm if you can attend.",
     guest_name_error: "Please, fill the name of all companions",
     limit_reached: "Maximum limit of 6 guests reached.",
