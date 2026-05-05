@@ -467,6 +467,29 @@
                 </div>
               </div>
 
+              <!-- Botão para Calendário - Aparece apenas se presença for 'yes' -->
+              <div
+                v-if="form.attending === 'yes'"
+                class="mt-8 flex justify-center animate-fade-in">
+                <a
+                  :href="`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(t.rsvp_form.calendar_title)}&dates=20270221T143000Z/20270221T235900Z&location=${encodeURIComponent(t.rsvp_form.location_name)}&sf=true&output=xml`"
+                  target="_blank"
+                  class="inline-flex items-center px-6 py-3 bg-wedding-navy text-white text-xs font-bold uppercase tracking-widest rounded-full hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
+                  <svg
+                    class="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {{ t.rsvp_form.add_to_calendar }}
+                </a>
+              </div>
+
               <p class="mt-8 text-[10px] text-slate-400 font-medium italic">
                 {{ t.rsvp_form.change_something }}
               </p>
