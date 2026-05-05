@@ -88,7 +88,7 @@ export const en = {
     remove_guest: "Remove",
     name_error: "Please, fill out your name.",
     change_something:
-      "In case you need toCaso precises de alterar algo, por favor contacta-nos diretamente para o 911234567 ou este email@email.",
+      "In case you need to change something please contact us directely!",
     presence_error: "Confirm if you can attend.",
     guest_name_error: "Please, fill the name of all companions",
     limit_reached: "Maximum limit of 6 guests reached.",

@@ -89,7 +89,7 @@ export const pt = {
     remove_guest: "Remover",
     name_error: "Identifica-te!.",
     change_something:
-      "Caso precises de alterar algo, por favor contacta-nos diretamente para o 911234567 ou este email@email.",
+      "Caso precises de alterar algo, por favor contacta-nos diretamente!",
     presence_error: "Confirme se poderá estar presente.",
     guest_name_error: "Por favor, preenche o nome de todos os acompanhantes.",
     limit_reached: "Limite máximo de 5 acompanhantes atingido.",
