@@ -387,9 +387,9 @@
               <h3 class="text-3xl font-serif text-wedding-navy mb-2">
                 {{ t.rsvp_form.success_title }}
               </h3>
-              <p class="text-slate-500 font-light leading-relaxed mb-8">
-                {{ t.rsvp_form.success_msg }}
-              </p>
+              <p
+                class="text-slate-500 font-light leading-relaxed mb-8"
+                v-html="t.rsvp_form.success_msg"></p>
 
               <div
                 class="bg-slate-50 rounded-[2rem] p-6 md:p-8 border border-slate-100 shadow-sm text-left">

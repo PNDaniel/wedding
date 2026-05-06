@@ -68,11 +68,12 @@ export const pt = {
     deadline: "Pedimos confirmação até dia 31 de Outubro de 2026!",
     presence_error: "Falta confirmar a presença!",
     success_title: "Confirmado!",
-    success_msg: "A resposta foi enviada. Mal podemos esperar!",
+    success_msg:
+      "A resposta foi enviada. <br class='md:hidden'>Mal podemos esperar!",
     name_label: "Nome",
     name_placeholder: "Ex: Carolina Moreira",
     presence_label: "Confirmas a tua presença?",
-    presence_yes: "Sim, aceito!",
+    presence_yes: "Sim, confirmado!",
     presence_no: "Infelizmente não",
     dietary_label: "Restrições e Necessidades",
     dietary_placeholder:
@@ -116,7 +117,7 @@ export const pt = {
     dress_code: "Estão a ver aquele vestido ou fato mesmo bonito? Tragam-nos!",
     dress_code_formal: "Dress code: formal",
     indoor:
-      "O dia inteiro será passado debaixo de telha, a chuva nem o frio serão um incómodo.",
+      "O dia inteiro será passado debaixo de telha, nem a chuva nem o frio serão um incómodo.",
     babysitting:
       "Vai haver sala de babysitting e animação supervisonada para crianças.",
     parking: "Há vários parques de estacionamento na zona.",
