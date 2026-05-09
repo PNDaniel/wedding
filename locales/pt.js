@@ -43,7 +43,7 @@ export const pt = {
       time: "20:30",
       icon: "images/Stage4.webp",
       title: "Cenas",
-      extra: "",
+      extra: "Nem nós sabemos!",
     },
     {
       time: "21:30",
