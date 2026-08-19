@@ -4,9 +4,9 @@ export const en = {
     edict: "Edict",
     lineup: "Lineup",
     rsvp: "RSVP",
-    gifts: "Gifts",
     info: "Information",
     location: "Location",
+    gifts: "Gifts",
   },
   home: {
     subtitle: "WE ARE GETTING MARRIED",
@@ -68,11 +68,11 @@ export const en = {
     deadline: "We ask for your confirmation by October 31st 2026.",
     presence_error: " Erro ",
     success_title: "Confirmed!",
-    success_msg: "Your response has been sent. We can't wait!",
+    success_msg: "Your response has been sent.\nWe can't wait!",
     name_label: "Name",
     name_placeholder: "Ex: Carolina Moreira",
     presence_label: "Will you attend?",
-    presence_yes: "Yes, I do!",
+    presence_yes: "Yes, I will!",
     presence_no: "Sadly, no",
     dietary_label: "Restrictions and Necessities",
     dietary_placeholder: "Allergies, vegetarian, etc...",
@@ -101,7 +101,7 @@ export const en = {
   gifts: {
     title: "Gifts",
     message:
-      "The most important thing to us is your presence. However, if you wish to give an extra contribution, the IBAN is the following:",
+      "The most important thing is that you show up, but if you'd like to help us get to know Japan, we thank you for the help!",
     iban_label: "Bank Transfer (IBAN)",
     copy_btn: "Copy IBAN",
     copied: "Copied!",

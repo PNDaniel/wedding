@@ -75,6 +75,7 @@
       }
     </style>
   </head>
+
   <body class="bg-stone-50 text-stone-900">
     <div id="app">
       <nav
@@ -92,7 +93,7 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 6h16M4 12h16m-7 6h7" />
+              d="M4 6h16M4 12h16M4 18h9" />
           </svg>
           <svg
             v-else
@@ -387,9 +388,9 @@
               <h3 class="text-3xl font-serif text-wedding-navy mb-2">
                 {{ t.rsvp_form.success_title }}
               </h3>
-              <p class="text-slate-500 font-light leading-relaxed mb-8">
-                {{ t.rsvp_form.success_msg }}
-              </p>
+              <p
+                class="text-slate-500 font-light leading-relaxed mb-8"
+                v-html="t.rsvp_form.success_msg"></p>
 
               <div
                 class="bg-slate-50 rounded-[2rem] p-6 md:p-8 border border-slate-100 shadow-sm text-left">
@@ -692,48 +693,6 @@
         </div>
       </section>
 
-      <section id="gifts" class="py-24 px-6 bg-white">
-        <!-- Normalmente dinheiros seriam com o CC, mas neste caso não é para ele.-->
-        <div class="max-w-2xl mx-auto text-center">
-          <h2 class="text-4xl font-serif italic text-wedding-navy mb-6">
-            {{ t.gifts.title }}
-          </h2>
-          <p class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
-            {{ t.gifts.message }}
-          </p>
-
-          <div
-            class="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group">
-            <span
-              class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid mb-4 block opacity-60">
-              {{ t.gifts.iban_label }}
-            </span>
-
-            <p
-              class="text-xl md:text-2xl font-mono text-wedding-navy tracking-tighter mb-8 break-all">
-              {{ iban }}
-            </p>
-
-            <button
-              @click="copyIban"
-              class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose active:scale-95 shadow-lg shadow-wedding-navy/20">
-              <span v-if="!copyStatus">📋</span>
-              <span v-else>✨</span>
-              {{ copyStatus ? t.gifts.copied : t.gifts.copy_btn }}
-            </button>
-
-            <div
-              class="absolute -top-6 -right-6 w-24 h-24 bg-wedding-rose/5 rounded-full blur-2xl group-hover:bg-wedding-rose/10 transition-colors"></div>
-          </div>
-
-          <p
-            class="mt-8 text-[10px] font-medium tracking-widest text-wedding-purple">
-            {{ t.gifts.bertrand_note }}
-            <!-- Já o Teca preferia Steam cards, mas pronto. -->
-          </p>
-        </div>
-      </section>
-
       <section id="info" class="py-24 px-6 bg-white">
         <div class="max-w-2xl mx-auto text-center">
           <h2 class="text-4xl font-serif italic text-wedding-purple mb-6">
@@ -896,6 +855,48 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="gifts" class="py-24 px-6 bg-white">
+        <!-- Normalmente dinheiros seriam com o CC, mas neste caso não é para ele.-->
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-4xl font-serif italic text-wedding-navy mb-6">
+            {{ t.gifts.title }}
+          </h2>
+          <p class="text-slate-500 font-light italic leading-relaxed mb-6 px-4">
+            {{ t.gifts.message }}
+          </p>
+
+          <div
+            class="bg-slate-50 p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-sm relative overflow-hidden group">
+            <span
+              class="text-[10px] font-black uppercase tracking-widest text-wedding-blue-mid mb-4 block opacity-60">
+              {{ t.gifts.iban_label }}
+            </span>
+
+            <p
+              class="text-xl md:text-2xl font-mono text-wedding-navy tracking-tighter mb-8 break-all">
+              {{ iban }}
+            </p>
+
+            <button
+              @click="copyIban"
+              class="inline-flex items-center gap-3 bg-wedding-navy text-white px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-[0.2em] transition-all hover:bg-wedding-rose active:scale-95 shadow-lg shadow-wedding-navy/20">
+              <span v-if="!copyStatus">📋</span>
+              <span v-else>✨</span>
+              {{ copyStatus ? t.gifts.copied : t.gifts.copy_btn }}
+            </button>
+
+            <div
+              class="absolute -top-6 -right-6 w-24 h-24 bg-wedding-rose/5 rounded-full blur-2xl group-hover:bg-wedding-rose/10 transition-colors"></div>
+          </div>
+
+          <p
+            class="mt-8 text-[10px] font-medium tracking-widest text-wedding-purple">
+            {{ t.gifts.bertrand_note }}
+            <!-- Já o Teca preferia Steam cards, mas pronto. -->
+          </p>
         </div>
       </section>
 
