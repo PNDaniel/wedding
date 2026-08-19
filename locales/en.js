@@ -4,9 +4,9 @@ export const en = {
     edict: "Edict",
     lineup: "Lineup",
     rsvp: "RSVP",
-    gifts: "Gifts",
     info: "Information",
     location: "Location",
+    gifts: "Gifts",
   },
   home: {
     subtitle: "WE ARE GETTING MARRIED",
@@ -101,7 +101,7 @@ export const en = {
   gifts: {
     title: "Gifts",
     message:
-      "The most important thing to us is your presence. However, if you wish to give an extra contribution, the IBAN is the following:",
+      "The most important thing is that you show up, but if you'd like to help us get to know Japan, we thank you for the help!",
     iban_label: "Bank Transfer (IBAN)",
     copy_btn: "Copy IBAN",
     copied: "Copied!",

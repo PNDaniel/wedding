@@ -4,9 +4,9 @@ export const pt = {
     edict: "Edital",
     lineup: "Alinhamento",
     rsvp: "Confirmação",
-    gifts: "Presentes",
     info: "Informações",
     location: "Localização",
+    gifts: "Presentes",
   },
   home: {
     subtitle: "VAMOS CASAR",
@@ -103,7 +103,7 @@ export const pt = {
   gifts: {
     title: "Presentes",
     message:
-      "Queremos é que apareçam, mas se quiserem dar uma contribuição extra, podem enviar para o seguinte IBAN:",
+      "Realmente o mais importante é aparecerem, mas caso queiram ajudar a conhecermos o Japão, aceitamos!",
     iban_label: "Transferência Bancária (IBAN)",
     copy_btn: "Copiar IBAN",
     copied: "Copiado!",
