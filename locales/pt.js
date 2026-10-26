@@ -65,7 +65,7 @@ export const pt = {
     },
   ],
   rsvp_form: {
-    deadline: "Pedimos confirmação até dia 31 de Outubro de 2026!",
+    deadline: "Pedimos confirmação até dia 15 de Dezembro de 2026!",
     presence_error: "Falta confirmar a presença!",
     success_title: "Confirmado!",
     success_msg:
