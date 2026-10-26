@@ -65,7 +65,7 @@ export const en = {
     },
   ],
   rsvp_form: {
-    deadline: "We ask for your confirmation by December 15th 2026.",
+    deadline: "We ask for your confirmation by October 31th 2026.",
     presence_error: " Erro ",
     success_title: "Confirmed!",
     success_msg: "Your response has been sent.\nWe can't wait!",
