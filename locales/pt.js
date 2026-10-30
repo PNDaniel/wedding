@@ -22,7 +22,7 @@ export const pt = {
   },
   lineup: [
     {
-      time: "14:30",
+      time: "14:00",
       icon: "images/Stage1.webp",
       title: "Cerimónia",
       extra: "Vai ser muito bonito",
@@ -58,7 +58,7 @@ export const pt = {
       extra: "A Carolina vai dançar",
     },
     {
-      time: "00:30",
+      time: "01:00",
       icon: "images/Stage7.webp",
       title: "Fim da Festa",
       extra: "O Daniel vai dormir, vocês fazem o que quiserem",
